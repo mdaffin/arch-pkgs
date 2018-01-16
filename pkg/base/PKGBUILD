@@ -9,8 +9,17 @@ license=('MIT')
 groups=('mdaffin')
 install=mdaffin-base.install
 depends=(
-    'zsh'
     'neovim'
+    'python-neovim'
+    'python2-neovim'
+    'zsh'
+    'grml-zsh-config'
+    'tmux'
+    'htop'
+    'iotop'
+    'openssh'
+    'lsof'
+    'wget'
     'f2fs-tools'
     'bash'
     'bzip2'
