@@ -1,0 +1,23 @@
+# Maintainer: Michael Daffin <michael@daffin.io>
+pkgname=mdaffin-display-manager
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="Configures a display manager"
+arch=('any')
+url="https://github.com/mdaffin/mdaffin-arch-repo/pkg/display-manager"
+license=('MIT')
+groups=('mdaffin')
+depends=('sddm')
+
+source=('sddm.conf'
+        '00-keyboard.conf')
+md5sums=('53a860f867b6fe5a57bca6268fc3a221'
+         'b67a24e0d03195ea7d7c8deec78461a7')
+
+package() {
+    install -Dm 0644 sddm.conf "$pkgdir/etc/sddm.conf"
+    install -dm 0755 "$pkgdir/usr/lib/systemd/system/multi-user.target.wants"
+    install -Dm 0644 00-keyboard.conf "$pkgdir/etc/X11/xorg.conf.d/00-keyboard.conf"
+    ln -s /usr/lib/systemd/system/sddm.service \
+        "$pkgdir/usr/lib/systemd/system/multi-user.target.wants/sddm.service"
+}
