@@ -1,0 +1,69 @@
+# Maintainer: Michael Daffin <michael@daffin.io>
+pkgname=mdaffin-base
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="Base system configuration for mdaffin systems"
+arch=('any')
+url="https://github.com/mdaffin/mdaffin-arch-repo"
+license=('MIT')
+groups=('mdaffin')
+install=mdaffin-base.install
+depends=(
+    'zsh'
+    'neovim'
+    'f2fs-tools'
+    'bash'
+    'bzip2'
+    'coreutils'
+    'cryptsetup'
+    'device-mapper'
+    'dhcpcd'
+    'diffutils'
+    'file'
+    'filesystem'
+    'findutils'
+    'gawk'
+    'gcc-libs'
+    'gettext'
+    'glibc'
+    'grep'
+    'gzip'
+    'inetutils'
+    'iproute2'
+    'iputils'
+    'less'
+    'licenses'
+    'linux'
+    'logrotate'
+    'man-db'
+    'man-pages'
+    'mdadm'
+    'pacman'
+    'pciutils'
+    'pcmciautils'
+    'perl'
+    'procps-ng'
+    'psmisc'
+    's-nail'
+    'sed'
+    'shadow'
+    'sysfsutils'
+    'systemd-sysvcompat'
+    'tar'
+    'texinfo'
+    'usbutils'
+    'util-linux'
+    'which'
+)
+source=('locale.conf'
+        'vconsole.conf')
+md5sums=('9cbcb94d090588e57cf8e49c892c55ae'
+         'c0720e7b24bd08542b7621ef3b6608e5')
+
+package() {
+    install -dm 0755 "$pkgdir/etc"
+    install -dm 0755 "$pkgdir/usr/lib/systemd/system/sysinit.target.wants/"
+    install -Dm 0644 locale.conf "$pkgdir/etc/locale.conf"
+    install -Dm 0644 vconsole.conf "$pkgdir/etc/vconsole.conf"
+    ln -s /usr/lib/systemd/system/systemd-timesyncd.service "$pkgdir/usr/lib/systemd/system/sysinit.target.wants/systemd-timesyncd.service"
+}

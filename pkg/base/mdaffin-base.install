@@ -1,0 +1,8 @@
+post_install() {
+    ln -sf /usr/share/zoneinfo/Europe/London "$pkgdir/etc/localtime"
+    locale-gen
+}
+
+post_upgrade() {
+    locale-gen
+}

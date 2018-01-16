@@ -19,6 +19,8 @@ clear
 exec 1> >(tee "stdout.log")
 exec 2> >(tee "stderr.log")
 
+timedatectl set-ntp true
+
 ### Setup the disk and partitions ###
 parted --script "${device}" -- mklabel gpt \
   mkpart ESP fat32 1Mib 129MiB \
