@@ -24,11 +24,7 @@ parted --script "${device}" -- mklabel gpt \
   mkpart ESP fat32 1Mib 129MiB \
   set 1 boot on \
   mkpart primary linux-swap 129MiB 2177MiB \
-  mkpart primary f2fs 2177MiB 100%
-
-# Might be needed inside libvirt... Or a small delay?
-#partprobe
-#ls "${device}"*
+  mkpart primary ext4 2177MiB 100%
 
 # Simple globbing was not enough as on one device I needed to match /dev/mmcblk0p1 
 # but not /dev/mmcblk0boot1 while being able to match /dev/sda1 on other devices.
@@ -52,11 +48,11 @@ echo "${hostname}" > /mnt/etc/hostname
 
 arch-chroot /mnt bootctl install
 
-cat <<EOF > /mnt/boot/loader/entries/arch.conf
+cat <<EOF > /mnt/boot/loader/loader.conf
 default arch
 EOF
 
-cat <<EOF > /mnt/boot/loader/loader.conf
+cat <<EOF > /mnt/boot/loader/entries/arch.conf
 title    Arch Linux
 linux    /vmlinuz-linux
 initrd   /initramfs-linux.img
