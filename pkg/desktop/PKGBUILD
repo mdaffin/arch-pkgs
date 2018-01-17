@@ -1,0 +1,19 @@
+# Maintainer: Michael Daffin <michael@daffin.io>
+pkgname=mdaffin-desktop
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="I3 desktop"
+arch=('any')
+url="https://github.com/mdaffin/mdaffin-arch-repo"
+license=('MIT')
+groups=('mdaffin')
+depends=(
+    'i3-wm'
+    'i3status'
+    'i3blocks'
+    'i3lock'
+    'dmenu'
+    'termite'
+    'firefox'
+    'ttf-dejavu'
+)
