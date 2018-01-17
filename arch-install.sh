@@ -1,7 +1,7 @@
 #!/bin/bash
 # WARNING: this script will destroy data on the selected disk.
 # This script can be run by executing the following:
-#   curl -sL https://goo.gl/mABHUj | bash
+#   curl -sL https://goo.gl/cZGj9n/repo/install.sh | bash
 
 set -uo pipefail
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
@@ -42,6 +42,12 @@ swapon "${part_swap}"
 mount "${part_root}" /mnt
 mkdir /mnt/boot
 mount "${part_boot}" /mnt/boot
+
+cat <<EOF >>/etc/pacman.conf
+[mdaffin]
+SigLevel = Optional TrustAll
+Server = https://mdaffin-arch.ams3.digitaloceanspaces.com/repo/x86_64
+EOF
 
 ### Install and configure the basic system ###
 pacstrap /mnt base
