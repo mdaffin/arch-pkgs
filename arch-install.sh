@@ -50,7 +50,7 @@ Server = https://mdaffin-arch.ams3.digitaloceanspaces.com/repo/x86_64
 EOF
 
 ### Install and configure the basic system ###
-pacstrap /mnt base
+pacstrap /mnt mdaffin-desktop
 genfstab -t PARTUUID /mnt >> /mnt/etc/fstab
 echo "${hostname}" > /mnt/etc/hostname
 

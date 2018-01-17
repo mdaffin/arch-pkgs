@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname=mdaffin-desktop
-pkgver=0.0.1
+pkgver=0.0.2
 pkgrel=1
 pkgdesc="I3 desktop"
 arch=('any')
@@ -16,4 +16,7 @@ depends=(
     'termite'
     'firefox'
     'ttf-dejavu'
+    'mdaffin-display-manager'
+    'mdaffin-base'
+    'mdaffin-network-gui'
 )
