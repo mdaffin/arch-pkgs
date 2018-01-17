@@ -3,10 +3,14 @@ set -uo pipefail
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 
 repo=$PWD/repo
+CHROOT=$PWD/root
+
+[[ -d "$CHROOT" ]] || mkarchroot -C /etc/pacman.conf $CHROOT/root mdaffin-base base-devel
 
 for package in pkg/*; do
     cd "$package"
-    makepkg -srcfC
+    rm -f *.pkg.tar.xz
+    makechrootpkg -c -r $CHROOT
     cd -
 done
 

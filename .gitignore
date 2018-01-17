@@ -2,3 +2,5 @@
 /pkg/**/pkg/
 /pkg/**/src/
 repo/
+*.log
+/root/
