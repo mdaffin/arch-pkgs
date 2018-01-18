@@ -2,9 +2,10 @@
 # WARNING: this script will destroy data on the selected disk.
 # This script can be run by executing the following:
 #   curl -sL https://goo.gl/ks8frs | bash
-
 set -uo pipefail
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
+
+REPO_URL="https://mdaffin-arch.ams3.digitaloceanspaces.com/repo/x86_64"
 
 ### Get infomation from user ###
 hostname=$(dialog --stdout --inputbox "Enter hostname" 0 0) || exit 1
@@ -57,7 +58,7 @@ mount "${part_boot}" /mnt/boot
 read pacman_conf <<EOF
 [mdaffin]
 SigLevel = Optional TrustAll
-Server = https://mdaffin-arch.ams3.digitaloceanspaces.com/repo/x86_64
+Server = $REPO_URL
 EOF
 
 echo "$pacman_conf" >>/etc/pacman.conf
@@ -85,5 +86,3 @@ arch-chroot /mnt useradd -mU -s /usr/bin/zsh -G wheel,uucp,video,audio,storage,g
 arch-chroot /mnt echo "$user:$password" | chpasswd
 arch-chroot /mnt echo "root:$password" | chpasswd
 arch-chroot /mnt chsh -s /usr/bin/zsh
-
-
