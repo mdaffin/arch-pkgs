@@ -1,6 +1,13 @@
-# arch-repo
+# Arch Repo
 
 A set of packages and tools for managing arch linux install via a custom repo.
+
+The idea is to manage a set of archlinux boxes with custom meta packages that
+install/configure sets of packages as well as to build/maintain aur packages.
+
+For example `mdaffin-base` will install packages that I always install on both
+servers and desktops. And `mdaffin-desktop` will install/configure i3, sddm and
+a bunch of useful applcations that I use on all of my systems.
 
 A repo is maintained in a amazon s3 bucket or digital ocean space with packages
 built from aur as well as some custom local packages stored in `pkg/`. The
