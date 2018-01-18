@@ -54,17 +54,20 @@ mount "${part_root}" /mnt
 mkdir /mnt/boot
 mount "${part_boot}" /mnt/boot
 
-cat <<EOF >>/etc/pacman.conf
+read pacman_conf <<EOF
 [mdaffin]
 SigLevel = Optional TrustAll
 Server = https://mdaffin-arch.ams3.digitaloceanspaces.com/repo/x86_64
 EOF
+
+echo "$pacman_conf" >>/etc/pacman.conf
 
 ### Install and configure the basic system ###
 pacstrap /mnt mdaffin-desktop
 genfstab -t PARTUUID /mnt >> /mnt/etc/fstab
 echo "${hostname}" > /mnt/etc/hostname
 
+echo "$pacman_conf" >>/mnt/etc/pacman.conf
 arch-chroot /mnt bootctl install
 
 cat <<EOF > /mnt/boot/loader/loader.conf
