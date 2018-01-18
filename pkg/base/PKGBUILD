@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname=mdaffin-base
-pkgver=0.0.2
+pkgver=0.0.3
 pkgrel=1
 pkgdesc="Base system configuration for mdaffin systems"
 arch=('any')
@@ -15,6 +15,10 @@ conflicts=(
 depends=(
     'sudo'
     'neovim'
+    'ripgrep'
+    'exa'
+    'fd-rs'
+    'exfat-utils'
     'python-neovim'
     'python2-neovim'
     'zsh'

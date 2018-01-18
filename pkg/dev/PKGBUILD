@@ -1,0 +1,33 @@
+# Maintainer: Michael Daffin <michael@daffin.io>
+pkgname=mdaffin-devel
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="Tools/packages used for development of various languages"
+arch=('any')
+url="https://github.com/mdaffin/mdaffin-arch-repo"
+license=('MIT')
+groups=('mdaffin')
+depends=(
+    'base-devel'
+    'git'
+    'rustup'
+    'go'
+    'qemu-user-static'
+    'binfmt-support'
+    'qemu'
+    'qemu-arch-extra'
+    'yarn'
+    'libvirt'
+    'virt-manager'
+    'virt-viewer'
+    'virtualbox'
+    'vagrant'
+    'docker'
+    'docker-compose'
+    'dnsmasq'
+    'devtools'
+    'repose'
+    'aurutils'
+    'picocom'
+    'jq'
+)
