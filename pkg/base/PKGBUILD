@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname=mdaffin-base
-pkgver=0.0.1
+pkgver=0.0.2
 pkgrel=1
 pkgdesc="Base system configuration for mdaffin systems"
 arch=('any')
@@ -8,7 +8,12 @@ url="https://github.com/mdaffin/mdaffin-arch-repo"
 license=('MIT')
 groups=('mdaffin')
 install=mdaffin-base.install
+conflicts=(
+    'vim'
+    'vi'
+)
 depends=(
+    'sudo'
     'neovim'
     'python-neovim'
     'python2-neovim'
@@ -65,14 +70,17 @@ depends=(
     'which'
 )
 source=('locale.conf'
-        'vconsole.conf')
-md5sums=('9cbcb94d090588e57cf8e49c892c55ae'
-         'c0720e7b24bd08542b7621ef3b6608e5')
+        'vconsole.conf'
+        'sudoers.wheel')
+md5sums=('f6ade2d2d1e9b9313f6a49a7ea7b81ea'
+         '12733d28ff3b5352ea1c3d84b27cd6bd'
+         '52719e50fbbea8255275964ba70aa0a7')
 
 package() {
-    install -dm 0755 "$pkgdir/etc"
-    install -dm 0755 "$pkgdir/usr/lib/systemd/system/sysinit.target.wants/"
+    install -dm 0755 "$pkgdir/usr/bin"
+    ln -s /usr/bin/nvim "$pkgdir/usr/bin/vim"
+    ln -s /usr/bin/nvim "$pkgdir/usr/bin/vi"
     install -Dm 0644 locale.conf "$pkgdir/etc/locale.conf"
     install -Dm 0644 vconsole.conf "$pkgdir/etc/vconsole.conf"
-    ln -s /usr/lib/systemd/system/systemd-timesyncd.service "$pkgdir/usr/lib/systemd/system/sysinit.target.wants/systemd-timesyncd.service"
+    install -Dm 0640 sudoers.wheel "$pkgdir/etc/sudoers.d/wheel"
 }

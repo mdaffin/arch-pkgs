@@ -1,0 +1,5 @@
+post_install() {
+    systemctl enable --now sddm
+    systemctl enable --now connman
+    systemctl enable --now avahi-daemon
+}

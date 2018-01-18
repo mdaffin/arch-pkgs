@@ -2,7 +2,11 @@
 set -uo pipefail
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 
-repo=$PWD/repo
+exit_cmd=""
+defer() { exit_cmd="$@; $exit_cmd"; }
+trap 'bash -c "$exit_cmd"' EXIT
+
+URL=https://ams3.digitaloceanspaces.com
 CHROOT=$PWD/root
 
 [[ -d "$CHROOT" ]] || mkarchroot -C /etc/pacman.conf $CHROOT/root mdaffin-base base-devel
@@ -14,7 +18,11 @@ for package in pkg/*; do
     cd -
 done
 
-s3fs mdaffin-arch:/repo "$repo" -o url=https://ams3.digitaloceanspaces.com,nosuid,nodev,default_acl=public-read
-trap 'fusermount -u "$repo"' EXIT
+repo="$(mktemp -d)"
+defer "rmdir '$repo'"
+
+s3fs mdaffin-arch:/repo "$repo" -o "url=$URL,nosuid,nodev,default_acl=public-read"
+defer "fusermount -u '$repo'"
+
 rsync --ignore-existing -v pkg/*/*.pkg.tar.xz "$repo/x86_64/"
 repose --verbose --xz --root="$repo/x86_64/" mdaffin

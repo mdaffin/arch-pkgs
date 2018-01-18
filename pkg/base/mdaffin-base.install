@@ -1,4 +1,5 @@
 post_install() {
+    systemctl enable --now systemd-timesyncd
     ln -sf /usr/share/zoneinfo/Europe/London "$pkgdir/etc/localtime"
     locale-gen
 }
