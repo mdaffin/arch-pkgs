@@ -6,15 +6,17 @@ exit_cmd=""
 defer() { exit_cmd="$@; $exit_cmd"; }
 trap 'bash -c "$exit_cmd"' EXIT
 
-URL=https://ams3.digitaloceanspaces.com
-CHROOT=$PWD/root
+PACKAGES=${1:-pkg/*}
+CHROOT="$PWD/root"
+
+source "config"
 
 [[ -d "$CHROOT" ]] || mkarchroot -C /etc/pacman.conf $CHROOT/root mdaffin-base base-devel
 
-for package in pkg/*; do
+for package in $PACKAGES; do
     cd "$package"
     rm -f *.pkg.tar.xz
-    makechrootpkg -c -r $CHROOT
+    makechrootpkg -cur $CHROOT
     cd -
 done
 

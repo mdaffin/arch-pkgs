@@ -1,0 +1,20 @@
+# Maintainer: Michael Daffin <michael@daffin.io>
+pkgname=mdaffin-dell-xps-13
+pkgver=0.0.2
+pkgrel=1
+pkgdesc="Extra config for the dell xps 13"
+arch=('any')
+url="https://github.com/mdaffin/mdaffin-arch-repo"
+license=('MIT')
+groups=('mdaffin')
+depends=('mdaffin-desktop')
+
+source=('20-hidpi.sh'
+        '90-hidpi-monitor.conf')
+md5sums=('b3a7e6ce4b75068459e653202584fea3'
+         'd9366a85462d2eca9e4f02f22ca8a8a7')
+
+package() {
+    install -Dm 0755 20-hidpi.sh "$pkgdir/etc/X11/xinit/xinitrc.d/20-hidpi.sh"
+    install -Dm 0644 90-hidpi-monitor.conf "$pkgdir/etc/X11/xorg.conf.d/90-hidpi-monitor.conf"
+}
