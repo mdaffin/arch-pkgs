@@ -1,0 +1,19 @@
+#!/bin/bash
+# Wraps aursync command to mount an amazon s3 bucket which contains a repository
+set -uo pipefail
+trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
+
+source "config"
+
+exit_cmd=""
+defer() { exit_cmd="$@; $exit_cmd"; }
+trap 'bash -c "$exit_cmd"' EXIT
+
+repo="$(mktemp -d)"
+defer "rmdir '$repo'"
+
+s3fs "${BUCKET}:/" "$repo" -o "url=$URL,nosuid,nodev,default_acl=public-read"
+defer "fusermount -u '$repo'"
+mkdir -p "$repo/${REPO_PATH}"
+
+aursync --repo mdaffin --root $repo/$REPO_PATH "$@"

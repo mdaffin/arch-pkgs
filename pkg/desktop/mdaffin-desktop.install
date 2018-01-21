@@ -1,5 +1,11 @@
 post_install() {
+    # hack to install the config as i3-wm normally owns this file
+    cp /etc/i3/mdaffin-desktop-config /etc/i3/config 
     systemctl enable --now sddm
     systemctl enable --now connman
     systemctl enable --now avahi-daemon
+}
+
+post_upgrade() {
+    cp /etc/i3/mdaffin-desktop-config /etc/i3/config 
 }

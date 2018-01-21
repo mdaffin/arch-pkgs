@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname=mdaffin-desktop
-pkgver=0.0.5
+pkgver=0.0.8
 pkgrel=1
 pkgdesc="I3 desktop"
 arch=('any')
@@ -10,6 +10,8 @@ groups=('mdaffin')
 install=mdaffin-desktop.install
 depends=(
     'mdaffin-base'
+    'rofi'
+    'ttf-monofur'
     'xf86-input-libinput'
     'xf86-input-synaptics'
     'xf86-video-intel'
@@ -36,8 +38,6 @@ depends=(
     'pulseaudio'
     'pulseaudio-alsa'
     'pavucontrol'
-    'avahi'
-    'nss-mdns'
     'xorg-bdftopcf'
     'xorg-iceauth'
     'xorg-luit'
@@ -78,12 +78,17 @@ depends=(
 )
 
 source=('sddm.conf'
-        '00-keyboard.conf')
+        '00-keyboard.conf'
+        'i3-config'
+        '30-rofi.sh')
 md5sums=('53a860f867b6fe5a57bca6268fc3a221'
-         'b67a24e0d03195ea7d7c8deec78461a7')
+         'b67a24e0d03195ea7d7c8deec78461a7'
+         'd9dcd133475af688ed86a879821c9384'
+         '04b9d1d0feae493f7b4274b56c217f5e')
 
-# TODO 'mdns_minimal [NOTFOUND=return] resolve' in /etc/nsswitch.conf
 package() {
     install -Dm 0644 sddm.conf "$pkgdir/etc/sddm.conf"
     install -Dm 0644 00-keyboard.conf "$pkgdir/etc/X11/xorg.conf.d/00-keyboard.conf"
+    install -Dm 0644 i3-config "$pkgdir/etc/i3/mdaffin-desktop-config"
+    install -Dm 0755 30-rofi.sh "$pkgdir/etc/X11/xinit/xinitrc.d/30-rofi.sh"
 }

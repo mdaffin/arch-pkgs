@@ -11,7 +11,9 @@ CHROOT="$PWD/root"
 
 source "config"
 
-[[ -d "$CHROOT" ]] || mkarchroot -C /etc/pacman.conf $CHROOT/root mdaffin-base base-devel
+mkdir -p "$CHROOT"
+
+[[ -d "$CHROOT/root" ]] || mkarchroot -C /etc/pacman.conf $CHROOT/root mdaffin-base base-devel
 
 for package in $PACKAGES; do
     cd "$package"
