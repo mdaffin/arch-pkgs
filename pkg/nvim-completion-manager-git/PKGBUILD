@@ -2,7 +2,7 @@
 
 _pkgname=nvim-completion-manager
 pkgname=nvim-completion-manager-git
-pkgver=0.0.0.r0.ge724a44
+pkgver=r649.e724a44
 pkgrel=1
 pkgdesc="Fast, Extensible, Async Completion Framework for Neovim"
 arch=('any')
@@ -10,8 +10,15 @@ url="https://github.com/roxma/nvim-completion-manager"
 license=('MIT')
 groups=('neovim-plugins')
 depends=('neovim')
+makedepends=('git')
 source=("git+https://github.com/roxma/nvim-completion-manager.git")
 sha256sums=('SKIP')
+
+pkgver() {
+	cd "${srcdir}/${_pkgname}"
+	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
 
 package() {
   cd "${_pkgname}"

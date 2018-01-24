@@ -2,7 +2,7 @@
 
 _pkgname=rust.vim
 pkgname=neovim-rust-git
-pkgver=0.0.0.r0.ge724a44
+pkgver=r0.ge724a44
 pkgrel=1
 pkgdesc="Vim configuration for Rust."
 arch=('any')
@@ -10,10 +10,16 @@ url="https://github.com/rust-lang/rust.vim"
 license=('MIT' 'APACHE')
 groups=('neovim-plugins')
 depends=('neovim')
+makedepends=('git')
 source=("git+https://github.com/rust-lang/rust.vim.git"
         "rust-vim-shim.vim")
 sha256sums=('SKIP'
             '598bcde49185cb5396502af602f52cd7675936afbfa658e096a03a5c5c73a5f5')
+
+pkgver() {
+	cd "${srcdir}/${_pkgname}"
+	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
 
 package() {
   # neovim comes with a bunch of files that conflict with rust.vim, we have to
