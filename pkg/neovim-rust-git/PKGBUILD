@@ -1,0 +1,28 @@
+# Maintainer:  Michael Daffin <michael@daffin.io>
+
+_pkgname=rust.vim
+pkgname=neovim-rust-git
+pkgver=0.0.0.r0.ge724a44
+pkgrel=1
+pkgdesc="Vim configuration for Rust."
+arch=('any')
+url="https://github.com/rust-lang/rust.vim"
+license=('MIT' 'APACHE')
+groups=('neovim-plugins')
+depends=('neovim')
+source=("git+https://github.com/rust-lang/rust.vim.git"
+        "rust-vim-shim.vim")
+sha256sums=('SKIP'
+            '598bcde49185cb5396502af602f52cd7675936afbfa658e096a03a5c5c73a5f5')
+
+package() {
+  # neovim comes with a bunch of files that conflict with rust.vim, we have to
+  # install install to a seperate directory at add that to the vim runtimepath
+  local installpath="$pkgdir/usr/share/nvim/runtime.d"
+  rm -rf "${_pkgname}"/{.git,.gitignore}
+  mkdir -p "$installpath"
+  cp -r "${_pkgname}" "$installpath/${_pkgname}"
+  install -Dm644 rust-vim-shim.vim "${pkgdir}/usr/share/nvim/runtime/plugin/rust-vim-shim.vim"
+}
+
+# vim: ts=2 sw=2 et:

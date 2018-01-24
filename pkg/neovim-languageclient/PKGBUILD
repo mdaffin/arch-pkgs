@@ -1,0 +1,25 @@
+# Maintainer:  Michael Daffin <michael@daffin.io>
+
+pkgname=neovim-languageclient
+pkgver=0.1.32
+pkgrel=1
+pkgdesc="Language Server Protocol (LSP) support for vim and neovim."
+arch=('x86_64' 'i686')
+url="https://github.com/autozimu/LanguageClient-neovim"
+license=('MIT')
+groups=('neovim-plugins')
+depends=('neovim')
+makedepends=('rust')
+source=("https://github.com/autozimu/LanguageClient-neovim/archive/${pkgver}.tar.gz")
+sha256sums=('0c5c212dac435b054ebb4a6d6dec19ed29545e7cbc70783bd411cef21f0bd797')
+
+package() {
+  cd "LanguageClient-neovim-${pkgver}"
+  local installpath="$pkgdir/usr/share/nvim/runtime"
+  cargo install --root "$installpath"
+  install -Dm644 plugin/LanguageClient.vim "$installpath/plugin/LanguageClient.vim"
+  install -Dm644 doc/LanguageClient.txt "$installpath/doc/LanguageClient.txt"
+  install -Dm644 LICENSE.txt "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
+
+# vim: ts=2 sw=2 et:
