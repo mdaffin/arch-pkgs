@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname=mdaffin-desktop
-pkgver=0.0.8
+pkgver=0.0.9
 pkgrel=1
 pkgdesc="I3 desktop"
 arch=('any')
@@ -11,6 +11,7 @@ install=mdaffin-desktop.install
 depends=(
     'mdaffin-base'
     'rofi'
+    'libinput-gestures'
     'ttf-monofur'
     'xf86-input-libinput'
     'xf86-input-synaptics'

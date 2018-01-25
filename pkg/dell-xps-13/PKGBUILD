@@ -1,13 +1,14 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname=mdaffin-dell-xps-13
-pkgver=0.0.2
+pkgver=0.0.3
 pkgrel=1
 pkgdesc="Extra config for the dell xps 13"
 arch=('any')
 url="https://github.com/mdaffin/mdaffin-arch-repo"
 license=('MIT')
 groups=('mdaffin')
-depends=('mdaffin-desktop')
+depends=('mdaffin-desktop'
+         'powertop')
 
 source=('20-hidpi.sh'
         '90-hidpi-monitor.conf')

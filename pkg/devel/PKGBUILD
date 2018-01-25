@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname=mdaffin-devel
-pkgver=0.0.1
+pkgver=0.0.3
 pkgrel=1
 pkgdesc="Tools/packages used for development of various languages"
 arch=('any')
@@ -8,8 +8,14 @@ url="https://github.com/mdaffin/mdaffin-arch-repo"
 license=('MIT')
 groups=('mdaffin')
 depends=(
+    'mdaffin-base'
+    'neovim-languageclient'
+    'neovim-rust-git'
+    'nvim-completion-manager-git'
+    'neovim-fugitive'
     'git'
     'rustup'
+    'cmake'
     'go'
     'qemu'
     'qemu-arch-extra'
