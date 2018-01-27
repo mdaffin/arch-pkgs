@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export MOZ_USE_XINPUT2=1
+
 xrdb -override <<EOF
 ! Enable the extended coloring options
 rofi.color-enabled: true
