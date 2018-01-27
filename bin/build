@@ -6,7 +6,7 @@ exit_cmd=""
 defer() { exit_cmd="$@; $exit_cmd"; }
 trap 'bash -c "$exit_cmd"' EXIT
 
-PACKAGES=${1:-pkg/*}
+PACKAGES=${@:-pkg/*}
 CHROOT="$PWD/root"
 
 source "config"
@@ -25,8 +25,8 @@ done
 repo="$(mktemp -d)"
 defer "rmdir '$repo'"
 
-s3fs mdaffin-arch:/repo "$repo" -o "url=$URL,nosuid,nodev,default_acl=public-read"
+s3fs "$BUCKET" "$repo" -o "nosuid,nodev,default_acl=public-read"
 defer "fusermount -u '$repo'"
 
-rsync --ignore-existing -v pkg/*/*.pkg.tar.xz "$repo/x86_64/"
-repose --verbose --xz --root="$repo/x86_64/" mdaffin
+rsync --ignore-existing -v pkg/*/*.pkg.tar.xz "$repo/$REPO_PATH"
+repose --verbose --xz --root="$repo/$REPO_PATH" "$REPO_NAME"

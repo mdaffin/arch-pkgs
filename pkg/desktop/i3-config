@@ -19,6 +19,9 @@ hide_edge_borders none
 # setup monitors if available
 exec --no-startup-id $HOME/.screenlayout/default.sh
 
+# support touchpad gestures
+exec --no-startup-id /usr/bin/libinput-gestures-setup start
+
 # set the background colour
 exec --no-startup-id xsetroot -solid "#222222"
 

@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname=mdaffin-devel
-pkgver=0.0.3
+pkgver=0.0.5
 pkgrel=1
 pkgdesc="Tools/packages used for development of various languages"
 arch=('any')
@@ -24,6 +24,7 @@ depends=(
     'virt-manager'
     'virt-viewer'
     'virtualbox'
+    'virtualbox-host-modules-arch'
     'vagrant'
     'docker'
     'docker-compose'
@@ -60,3 +61,10 @@ depends=(
     'util-linux'
     'which'
 )
+
+source=('mdaffin-devel.vim')
+md5sums=('44c5cecc71bc8dc363a3ac1f7d9effbd')
+
+package() {
+    install -Dm 0644 mdaffin-devel.vim "$pkgdir/usr/share/nvim/runtime/mdaffin-devel.vim"
+}

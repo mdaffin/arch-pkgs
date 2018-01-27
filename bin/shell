@@ -13,7 +13,7 @@ trap 'bash -c "$exit_cmd"' EXIT
 repo="$(mktemp -d)"
 defer "rmdir '$repo'"
 
-s3fs "${BUCKET}:/" "$repo" -o "url=$URL,nosuid,nodev,default_acl=public-read"
+s3fs "${BUCKET}" "$repo" -o "nosuid,nodev,default_acl=public-read"
 defer "fusermount -u '$repo'"
 mkdir -p "$repo/${REPO_PATH}"
 

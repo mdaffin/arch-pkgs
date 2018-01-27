@@ -1,8 +1,3 @@
-# Bucket name
 BUCKET=mdaffin-arch
-
-# URL to amazon s3 or digital ocean spaces api
-URL=https://s3.eu-west-2.amazonaws.com
-
-# Path in side the bucket the repo will live
 REPO_PATH=repo/x86_64
+REPO_NAME=mdaffin
