@@ -95,5 +95,5 @@ package() {
     install -Dm 0644 00-keyboard.conf "$pkgdir/etc/X11/xorg.conf.d/00-keyboard.conf"
     install -Dm 0644 i3-config "$pkgdir/etc/i3/mdaffin-desktop-config"
     install -Dm 0644 mdaffin-desktop.termite "$pkgdir/etc/xdg/termite/mdaffin-desktop.config"
-    install -Dm 0755 30-rofi.sh "$pkgdir/etc/X11/xinit/xinitrc.d/30-mdaffin-desktop.sh"
+    install -Dm 0755 30-mdaffin-desktop.sh "$pkgdir/etc/X11/xinit/xinitrc.d/30-mdaffin-desktop.sh"
 }
