@@ -3,6 +3,7 @@ set hidden
 
 autocmd BufReadPost *.rs setlocal filetype=rust
 
+" rustup component add rls-preview rust-analysis rust-src
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'stable', 'rls'],
     \ 'javascript': ['javascript-typescript-stdio'],
