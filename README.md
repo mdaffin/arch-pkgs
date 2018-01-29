@@ -48,6 +48,18 @@ Builds all local packages in `pkg/` and uploads them to the remote repo.
 ./bin/build
 ```
 
+## Managing AUR Packages
+
+Use the `aursync` wrapper script to add/update packages from AUR.
+
+```bash
+# build and install one or more packages
+./bin/aursync <packages>
+
+# update all aur packages
+./bin/aursync -u 
+```
+
 ## Manually manage the repo
 
 This mounts the remote repo then spawns a shell to manage it. Once you exit the
@@ -57,18 +69,4 @@ shell the remote remote gets unmounted.
 ./bin/shell
 ```
 
-Once in the shell above you can build aur packages with aurutils.
-
-```bash
-# Search aur for a package
-aursearch <pattern>
-
-# Install/update one or more packages
-aursync --repo mdaffin --root $REPO/x86_64 <package>
-
-# Update all packages from aur
-aursync --repo mdaffin --root $REPO/x86_64 -u
-```
-
-Once you are done type `exit` or press CTRL+D to exit the subshell and unmount
-the remote repo (this is done automatically).
+Once in the shell above the repo will be mounted at `$REPO`. When you are done type `exit` or press CTRL+D to exit the subshell this will automatically unmount the remote repo.
