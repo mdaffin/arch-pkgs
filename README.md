@@ -51,7 +51,7 @@ Builds all local packages in `pkg/` and uploads them to the remote repo.
 You can build one or more packages rather then all packages be specifiyng the path to each package.
 
 ```bash
-./bin/build pkg/mdaffi-{base,devel}
+./bin/build pkg/mdaffin-{base,devel}
 ```
 
 ## Managing AUR Packages
