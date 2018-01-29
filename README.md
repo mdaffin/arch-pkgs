@@ -23,7 +23,7 @@ new system with this repo that only requires the arch live usb and this
 command:
 
 ```bash
-curl -sL https://goo.gl/ks8frs | bash
+curl -sL https://goo.gl/Ehu5K9 | bash
 ```
 
 **WARNING** the above will wipe a drive and install arch on it. **DO NOT** run
