@@ -48,6 +48,12 @@ Builds all local packages in `pkg/` and uploads them to the remote repo.
 ./bin/build
 ```
 
+You can build one or more packages rather then all packages be specifiyng the path to each package.
+
+```bash
+./bin/build pkg/mdaffi-{base,devel}
+```
+
 ## Managing AUR Packages
 
 Use the `aursync` wrapper script to add/update packages from AUR.
