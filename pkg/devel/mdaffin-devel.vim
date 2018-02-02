@@ -8,7 +8,7 @@ let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
     \ 'rust': ['rustup', 'run', 'stable', 'rls'],
     \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'go': ['go-langserver'] }
+    \ 'go': ['go-langserver']
     \ }
 
 " Automatically start language servers.

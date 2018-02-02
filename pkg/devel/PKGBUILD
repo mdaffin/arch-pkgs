@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname=mdaffin-devel
-pkgver=0.0.6
+pkgver=0.0.7
 pkgrel=1
 pkgdesc="Tools/packages used for development of various languages"
 arch=('any')
@@ -63,7 +63,7 @@ depends=(
 )
 
 source=('mdaffin-devel.vim')
-md5sums=('61e93f0cec94510c79f8fa90a1859812')
+md5sums=('5a93a2418c8738ebb7cc4dc98934a664')
 
 package() {
     install -Dm 0644 mdaffin-devel.vim "$pkgdir/usr/share/nvim/runtime/plugin/mdaffin-devel.vim"
