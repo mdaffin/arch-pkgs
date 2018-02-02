@@ -13,7 +13,7 @@ source "config"
 
 mkdir -p "$CHROOT"
 
-[[ -d "$CHROOT/root" ]] || mkarchroot -C /etc/pacman.conf $CHROOT/root mdaffin-base base-devel
+[[ -d "$CHROOT/root" ]] || mkarchroot -C /etc/pacman.conf $CHROOT/root base-devel
 
 for package in $PACKAGES; do
     cd "$package"
