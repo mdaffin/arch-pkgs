@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname=mdaffin-base
-pkgver=0.0.8
+pkgver=0.0.9
 pkgrel=1
 pkgdesc="Base system configuration for mdaffin systems"
 arch=('any')
@@ -84,7 +84,7 @@ source=('vconsole.conf'
         'mdaffin-base.sh')
 md5sums=('12733d28ff3b5352ea1c3d84b27cd6bd'
          '52719e50fbbea8255275964ba70aa0a7'
-         '9463e8e19ee914684f7bd5190243aa3f')
+         'bf00c433360c960f8311207cf96fe4c7')
 
 package() {
     # TODO 'mdns_minimal [NOTFOUND=return] resolve' in /etc/nsswitch.conf
