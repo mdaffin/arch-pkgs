@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname=mdaffin-base
-pkgver=0.0.9
+pkgver=1
 pkgrel=1
 pkgdesc="Base system configuration for mdaffin systems"
 arch=('any')
@@ -81,10 +81,13 @@ depends=(
 )
 source=('vconsole.conf'
         'sudoers.wheel'
-        'mdaffin-base.sh')
-md5sums=('12733d28ff3b5352ea1c3d84b27cd6bd'
-         '52719e50fbbea8255275964ba70aa0a7'
-         'bf00c433360c960f8311207cf96fe4c7')
+        'mdaffin-base.sh'
+        'mdaffin-base.vim')
+
+sha256sums=('c49f96d252b261c0d4f92f7f4bece4ec66a3dfdad0e9f91443069e09a1d26482'
+            '9e2049e7013b49de7f5dd1d219b843f05ab889d89092f688acfb1cef7aef5940'
+            '181ef0e34d4e897cb0ae17c16328114ec08719da42a46f05ff4b0c3a027b027a'
+            '97df7abe0ac5b8047066394e3843f2227b2b7d5e5476f14f870a533b4f23d4b4')
 
 package() {
     # TODO 'mdns_minimal [NOTFOUND=return] resolve' in /etc/nsswitch.conf
@@ -94,4 +97,5 @@ package() {
     install -Dm 0644 vconsole.conf "$pkgdir/etc/vconsole.conf"
     install -Dm 0640 sudoers.wheel "$pkgdir/etc/sudoers.d/wheel"
     install -Dm 0755 mdaffin-base.sh "$pkgdir/etc/profile.d/mdaffin-base.sh"
+    install -Dm644 mdaffin-base.vim "${pkgdir}/usr/share/nvim/runtime/plugin/mdaffin-base.vim"
 }
