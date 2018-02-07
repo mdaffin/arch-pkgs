@@ -1,0 +1,22 @@
+# Maintainer:  Michael Daffin <michael@daffin.io>
+
+pkgname=mdaffin-neovim
+pkgver=1
+pkgrel=1
+pkgdesc="General neovim settings for mdaffin"
+arch=('any')
+url="https://github.com/mdaffin/arch-repo"
+license=('MIT')
+groups=('mdaffin')
+depends=('neovim')
+source=("mdaffin.vim")
+
+sha256sums=('1cc594e90ebfd069fafec52e34611bfa16cd4c58cb30e0629a69b67cccdeed4d'
+            '3dbc8b9525a63fe9aec1b242e058562ffbe3d9d70f6a3b231237d43e2601c04c')
+
+package() {
+  local installpath="$pkgdir/usr/share/nvim/runtime"
+  install -Dm644 mdaffin.vim "${pkgdir}/usr/share/nvim/runtime/plugin/mdaffin.vim"
+}
+
+# vim: ts=2 sw=2 et:

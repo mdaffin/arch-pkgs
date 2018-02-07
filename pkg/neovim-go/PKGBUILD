@@ -3,7 +3,7 @@
 _pkgname=vim-go
 pkgname=neovim-go
 pkgver=1.16
-pkgrel=2
+pkgrel=3
 pkgdesc="Go development plugin for Vim"
 arch=('any')
 url="https://github.com/fatih/vim-go"
@@ -12,8 +12,9 @@ groups=('neovim-plugins')
 depends=('neovim')
 source=("https://github.com/fatih/vim-go/archive/v${pkgver}.tar.gz"
         "vim-go-shim.vim")
+
 sha256sums=('1cc594e90ebfd069fafec52e34611bfa16cd4c58cb30e0629a69b67cccdeed4d'
-            '3e938bf8fbb2f9a90741e2d7bf8acdb3ebaeba184c329415cad30a78719dfdf9')
+            '3dbc8b9525a63fe9aec1b242e058562ffbe3d9d70f6a3b231237d43e2601c04c')
 
 package() {
   local installpath="$pkgdir/usr/share/nvim/runtime.d"
