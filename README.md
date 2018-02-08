@@ -29,6 +29,16 @@ curl -sL https://git.io/vNxbN | bash
 **WARNING** the above will wipe a drive and install arch on it. **DO NOT** run
 unless you have read through it first.
 
+For more details see these blog posts:
+
+- **Part 1:** [Hosting an Arch Linux Repo in an Amazon S3 Bucket]
+- **Part 2:** [Managing Arch Linux with Meta Packages]
+- **Part 3:** [Creating a Custom Arch Linux Installer]
+
+[Hosting an Arch Linux Repo in an Amazon S3 Bucket]: https://disconnected.systems/blog/archlinux-repo-in-aws-bucket
+[Managing Arch Linux with Meta Packages]: https://disconnected.systems/blog/archlinux-meta-packages
+[Creating a Custom Arch Linux Installer]: https://disconnected.systems/blog/archlinux-installer
+
 ## Requirements
 
 * A bucket/space on [amazon s3] or [digital ocean]
