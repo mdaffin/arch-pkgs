@@ -1,0 +1,5 @@
+# Managed by mdaffin-base package
+# https://github.com/mdaffin/arch-repo/blob/master/pkg/base/sudoers.wheel
+
+%wheel ALL=(ALL) ALL
+Defaults passwd_timeout=0
