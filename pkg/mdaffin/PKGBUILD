@@ -1,11 +1,12 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgbase='mdaffin'
-pkgname=('mdaffin-base' 'mdaffin-desktop' 'mdaffin-devel'
-'mdaffin-devel-vagrant' 'mdaffin-devel-docker' 'mdaffin-devel-rust'
-'mdaffin-devel-go' 'mdaffin-devel-web' 'mdaffin-devel-embedded'
-'mdaffin-devel-arch-repo' 'mdaffin-devel-work')
+pkgname=('mdaffin-base' 'mdaffin-desktop' 'mdaffin-laptop'
+'mdaffin-dell-xps-13' 'mdaffin-devel' 'mdaffin-devel-vagrant'
+'mdaffin-devel-docker' 'mdaffin-devel-rust' 'mdaffin-devel-go'
+'mdaffin-devel-web' 'mdaffin-devel-embedded' 'mdaffin-devel-arch-repo'
+'mdaffin-devel-work')
 pkgver=1
-pkgrel=1
+pkgrel=2
 pkgdesc="System config for mdaffin systems"
 arch=('any')
 url="https://github.com/mdaffin/arch-repo"
@@ -22,9 +23,12 @@ source=(
     'mdaffin-desktop-i3-config'
     'mdaffin-desktop.termite'
     'mdaffin-desktop.sh'
+    'mdaffin-dell-xps-13-hidpi.sh'
+    'mdaffin-dell-xps-13-hidpi-monitor.conf'
 )
 
-sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
+sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
+'SKIP' 'SKIP')
 
 package_mdaffin-base() {
     provides=('vim' 'vi')
@@ -73,6 +77,17 @@ package_mdaffin-desktop() {
     install -Dm 0644 mdaffin-desktop-i3-config "$pkgdir/etc/i3/mdaffin-desktop-config"
     install -Dm 0644 mdaffin-desktop.termite "$pkgdir/etc/xdg/termite/mdaffin-desktop.config"
     install -Dm 0755 mdaffin-desktop.sh "$pkgdir/etc/X11/xinit/xinitrc.d/30-mdaffin-desktop.sh"
+}
+
+package_mdaffin-laptop() {
+    depends=('mdaffin-desktop' 'powertop')
+}
+
+package_mdaffin-dell-xps-13() {
+    depends=('mdaffin-laptop')
+
+    install -Dm 0755 mdaffin-dell-xps-13-hidpi.sh "$pkgdir/etc/X11/xinit/xinitrc.d/20-hidpi.sh"
+    install -Dm 0644 mdaffin-dell-xps-13-hidpi-monitor.conf "$pkgdir/etc/X11/xorg.conf.d/90-hidpi-monitor.conf"
 }
 
 package_mdaffin-devel() {
