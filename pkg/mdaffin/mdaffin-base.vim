@@ -5,12 +5,13 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 
-set clipboard=unnamedplus
 set wildmenu
 set wildmode=longest:full,full
 set spelllang=en_gb
 
 let g:LanguageClient_autoStart = 1
+
+let g:LanguageClient_serverCommands = {}
 
 noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
 noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>

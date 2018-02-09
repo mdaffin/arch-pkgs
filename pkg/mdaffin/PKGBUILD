@@ -5,8 +5,8 @@ pkgname=('mdaffin-base' 'mdaffin-desktop' 'mdaffin-laptop'
 'mdaffin-devel-docker' 'mdaffin-devel-rust' 'mdaffin-devel-go'
 'mdaffin-devel-web' 'mdaffin-devel-embedded' 'mdaffin-devel-arch-repo'
 'mdaffin-devel-work')
-pkgver=1
-pkgrel=2
+pkgver=2
+pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=('any')
 url="https://github.com/mdaffin/arch-repo"
@@ -25,6 +25,7 @@ source=(
     'mdaffin-desktop.sh'
     'mdaffin-dell-xps-13-hidpi.sh'
     'mdaffin-dell-xps-13-hidpi-monitor.conf'
+    'mdaffin-devel-rust.vim'
 )
 
 sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
@@ -108,6 +109,8 @@ package_mdaffin-devel-docker() {
 
 package_mdaffin-devel-rust() {
     depends=('mdaffin-devel' 'neovim-rust-git' 'rustup')
+
+    install -Dm644 mdaffin-devel-rust.vim "${pkgdir}/usr/share/nvim/runtime/plugin/mdaffin-base.vim"
 }
 
 package_mdaffin-devel-go() {
