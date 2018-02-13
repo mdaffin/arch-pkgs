@@ -2,15 +2,15 @@
 set hidden
 
 set expandtab
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 
 set wildmenu
 set wildmode=longest:full,full
 set spelllang=en_gb
 
 let g:LanguageClient_autoStart = 1
-
 let g:LanguageClient_serverCommands = {}
 
 noremap <silent> H :call LanguageClient_textDocument_hover()<CR>

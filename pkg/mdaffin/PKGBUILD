@@ -5,8 +5,8 @@ pkgname=('mdaffin-base' 'mdaffin-desktop' 'mdaffin-laptop'
 'mdaffin-devel-docker' 'mdaffin-devel-rust' 'mdaffin-devel-go'
 'mdaffin-devel-web' 'mdaffin-devel-embedded' 'mdaffin-devel-arch-repo'
 'mdaffin-devel-work')
-pkgver=3
-pkgrel=2
+pkgver=5
+pkgrel=0
 pkgdesc="System config for mdaffin systems"
 arch=('any')
 url="https://github.com/mdaffin/arch-repo"
@@ -26,17 +26,18 @@ source=(
     'mdaffin-dell-xps-13-hidpi.sh'
     'mdaffin-dell-xps-13-hidpi-monitor.conf'
     'mdaffin-devel-rust.vim'
+    'mdaffin-devel-go.vim'
 )
 
 sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
-'SKIP' 'SKIP' 'SKIP')
+'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 package_mdaffin-base() {
     provides=('vim' 'vi')
     conflicts=('vim' 'vi')
     install=mdaffin-base.install
 
-    depends=('sudo' 'neovim' 'ripgrep' 'exa' 'fd-rs' 'exfat-utils' 'avahi'
+    depends=('sudo' 'neovim' 'ripgrep' 'exa' 'fd' 'exfat-utils' 'avahi'
     'nss-mdns' 'python-neovim' 'python2-neovim' 'zsh' 'grml-zsh-config' 'tmux'
     'htop' 'iotop' 'openssh' 'lsof' 'wget' 'f2fs-tools' 'bash' 'bzip2'
     'coreutils' 'cryptsetup' 'device-mapper' 'dhcpcd' 'diffutils' 'file'
@@ -115,7 +116,9 @@ package_mdaffin-devel-rust() {
 }
 
 package_mdaffin-devel-go() {
-    depends=('mdaffin-devel' 'go')
+    depends=('mdaffin-devel' 'go' 'neovim-go')
+
+    install -Dm644 mdaffin-devel-go.vim "${pkgdir}/usr/share/nvim/runtime/plugin/mdaffin-devel-go.vim"
 }
 
 package_mdaffin-devel-web() {

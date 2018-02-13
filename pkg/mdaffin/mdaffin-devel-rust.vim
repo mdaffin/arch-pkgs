@@ -5,3 +5,7 @@ let g:LanguageClient_serverCommands.rust = ['rustup', 'run', 'stable', 'rls']
 
 let g:rustfmt_autosave = 1
 let g:rustfmt_fail_silently = 1
+
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4

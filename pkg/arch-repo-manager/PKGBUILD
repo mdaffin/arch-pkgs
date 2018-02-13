@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname='arch-repo-manager'
-pkgver=0.2
+pkgver=0.3
 pkgrel=1
 pkgdesc="Manages an Arch Linux repo in Amazon S3 bucket"
 arch=('any')

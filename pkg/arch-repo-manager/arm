@@ -61,7 +61,7 @@ build() {
 
     mount_repo
     for package in $packages; do
-        rsync --ignore-existing -v "${package}/*.pkg.tar.xz" "$REPO/$REPO_PATH"
+        rsync --ignore-existing -v "${package}"/*.pkg.tar.xz "$REPO/$REPO_PATH"
     done
     repose --verbose --xz --root="$REPO/$REPO_PATH" "$REPO_NAME"
 }
