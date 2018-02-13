@@ -6,7 +6,10 @@ trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 configs=(
   "${XDG_CONFIG_HOME:-$HOME/.config}/arm/config"
   "/etc/arm/config"
-  "config"
+  "../../../arm.conf"
+  "../../arm.conf"
+  "../arm.conf"
+  "arm.conf"
 )
 
 for config in "${configs[@]}"; do
@@ -17,6 +20,8 @@ done
 : "${REPO_PATH:?"REPO_PATH missing"}"
 : "${BUCKET:?"BUCKET missing"}"
 : "${REPO_NAME:?"REPO_NAME missing"}"
+
+DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/arm"
 
 command="$1"
 shift
@@ -34,11 +39,14 @@ mount_repo() {
     mkdir -p "$REPO/${REPO_PATH}"
 }
 
+clean_chroot() {
+    echo "Cleaning up: ${DATADIR}/chroots"
+    sudo rm -rf "${DATADIR}/chroots"
+}
+
 build() {
     local packages=${@:-pkg/*}
-    local chroot="$PWD/root"
-
-    source "config"
+    local chroot="${DATA_DIR}/chroots"
 
     mkdir -p "$chroot"
 
@@ -52,7 +60,9 @@ build() {
     done
 
     mount_repo
-    rsync --ignore-existing -v pkg/*/*.pkg.tar.xz "$REPO/$REPO_PATH"
+    for package in $packages; do
+        rsync --ignore-existing -v "${package}/*.pkg.tar.xz" "$REPO/$REPO_PATH"
+    done
     repose --verbose --xz --root="$REPO/$REPO_PATH" "$REPO_NAME"
 }
 
@@ -69,6 +79,9 @@ shell() {
 }
 
 case "$command" in
+clean-chroot)
+    clean_chroot
+    ;;
 build)
     build "$@"
     ;;
@@ -79,4 +92,3 @@ shell)
     shell "$@"
     ;;
 esac
-
