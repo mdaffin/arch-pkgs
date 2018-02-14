@@ -1,0 +1,5 @@
+[Match]
+Name=wlp*
+
+[Network]
+DHCP=ipv4

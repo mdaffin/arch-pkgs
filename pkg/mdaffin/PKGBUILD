@@ -5,8 +5,8 @@ pkgname=('mdaffin-base' 'mdaffin-desktop' 'mdaffin-laptop'
 'mdaffin-devel-docker' 'mdaffin-devel-rust' 'mdaffin-devel-go'
 'mdaffin-devel-web' 'mdaffin-devel-embedded' 'mdaffin-devel-arch-repo'
 'mdaffin-devel-work')
-pkgver=5
-pkgrel=0
+pkgver=6
+pkgrel=2
 pkgdesc="System config for mdaffin systems"
 arch=('any')
 url="https://github.com/mdaffin/arch-repo"
@@ -18,6 +18,8 @@ source=(
     'mdaffin-base.vim'
     'mdaffin-base.sudoers'
     'mdaffin-base-vconsole.conf'
+    'mdaffin-base-enp.network'
+    'mdaffin-base-wlp.network'
     'mdaffin-desktop-sddm.conf'
     'mdaffin-desktop-00-keyboard.conf'
     'mdaffin-desktop-i3-config'
@@ -30,7 +32,7 @@ source=(
 )
 
 sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
-'SKIP' 'SKIP' 'SKIP' 'SKIP')
+'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 package_mdaffin-base() {
     provides=('vim' 'vi')
@@ -44,13 +46,16 @@ package_mdaffin-base() {
     'filesystem' 'findutils' 'gawk' 'gcc-libs' 'gettext' 'glibc' 'grep' 'gzip'
     'inetutils' 'iproute2' 'iputils' 'less' 'licenses' 'linux' 'logrotate'
     'man-db' 'man-pages' 'mdadm' 'pacman' 'pciutils' 'pcmciautils' 'perl'
-    'procps-ng' 'psmisc' 's-nail' 'sed' 'shadow' 'sysfsutils'
+    'procps-ng' 'psmisc' 's-nail' 'sed' 'shadow' 'sysfsutils' 'wpa_supplicant'
     'systemd-sysvcompat' 'tar' 'texinfo' 'usbutils' 'util-linux' 'which'
     'neovim-languageclient' 'nvim-completion-manager-git' 'neovim-fugitive')
 
     install -dm 0755 "$pkgdir/usr/bin"
     ln -s /usr/bin/nvim "$pkgdir/usr/bin/vim"
     ln -s /usr/bin/nvim "$pkgdir/usr/bin/vi"
+
+    install -Dm 0644 mdaffin-base-enp.network "$pkgdir/usr/lib/systemd/network/90-mdaffin-base-enp.network"
+    install -Dm 0644 mdaffin-base-wlp.network "$pkgdir/usr/lib/systemd/network/90-mdaffin-base-wlp.network"
     install -Dm 0644 mdaffin-base-vconsole.conf "$pkgdir/etc/vconsole.conf"
     install -Dm 0640 mdaffin-base.sudoers "$pkgdir/etc/sudoers.d/mdaffin-base"
     install -Dm 0755 mdaffin-base.sh "$pkgdir/etc/profile.d/mdaffin-base.sh"
@@ -62,11 +67,11 @@ package_mdaffin-desktop() {
 
     depends=('mdaffin-base' 'rofi' 'libinput-gestures' 'ttf-monofur'
     'xf86-input-libinput' 'xf86-input-synaptics' 'xf86-video-intel'
-    'xf86-video-nouveau' 'nvidia' 'xf86-video-vesa' 'xorg-xsetroot' 'xorg-xkill'
-    'xorg-xbacklight' 'redshift' 'python-xdg' 'sddm' 'i3-wm' 'i3status'
-    'i3blocks' 'i3lock' 'dmenu' 'termite' 'firefox' 'ttf-dejavu' 'connman'
-    'wpa_supplicant' 'bluez' 'openvpn' 'pulseaudio' 'pulseaudio-alsa'
-    'pavucontrol' 'xorg-bdftopcf' 'xorg-iceauth' 'xorg-luit' 'xorg-mkfontdir'
+    'xf86-video-nouveau' 'nvidia' 'xf86-video-vesa' 'xorg-xsetroot'
+    'xorg-xkill' 'xorg-xbacklight' 'redshift' 'python-xdg' 'sddm' 'i3-wm'
+    'i3status' 'i3blocks' 'i3lock' 'dmenu' 'termite' 'firefox' 'ttf-dejavu'
+    'bluez' 'openvpn' 'pulseaudio' 'pulseaudio-alsa' 'pavucontrol'
+    'xorg-bdftopcf' 'xorg-iceauth' 'xorg-luit' 'xorg-mkfontdir'
     'xorg-mkfontscale' 'xorg-sessreg' 'xorg-setxkbmap' 'xorg-smproxy'
     'xorg-x11perf' 'xorg-xauth' 'xorg-xbacklight' 'xorg-xcmsdb'
     'xorg-xcursorgen' 'xorg-xdpyinfo' 'xorg-xdriinfo' 'xorg-xev' 'xorg-xgamma'
