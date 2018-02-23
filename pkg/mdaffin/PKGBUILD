@@ -5,8 +5,8 @@ pkgname=('mdaffin-base' 'mdaffin-desktop' 'mdaffin-laptop'
 'mdaffin-devel-docker' 'mdaffin-devel-rust' 'mdaffin-devel-go'
 'mdaffin-devel-web' 'mdaffin-devel-embedded' 'mdaffin-devel-arch-repo'
 'mdaffin-devel-work')
-pkgver=6
-pkgrel=2
+pkgver=7
+pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=('any')
 url="https://github.com/mdaffin/arch-repo"
@@ -48,17 +48,20 @@ package_mdaffin-base() {
     'man-db' 'man-pages' 'mdadm' 'pacman' 'pciutils' 'pcmciautils' 'perl'
     'procps-ng' 'psmisc' 's-nail' 'sed' 'shadow' 'sysfsutils' 'wpa_supplicant'
     'systemd-sysvcompat' 'tar' 'texinfo' 'usbutils' 'util-linux' 'which'
-    'neovim-languageclient' 'nvim-completion-manager-git' 'neovim-fugitive')
+    'neovim-languageclient' 'nvim-completion-manager-git' 'neovim-fugitive'
+    'fzf')
 
-    install -dm 0755 "$pkgdir/usr/bin"
-    ln -s /usr/bin/nvim "$pkgdir/usr/bin/vim"
-    ln -s /usr/bin/nvim "$pkgdir/usr/bin/vi"
+    install -dm 0755 "${pkgdir}/usr/bin"
+    ln -s /usr/bin/nvim "${pkgdir}/usr/bin/vim"
+    ln -s /usr/bin/nvim "${pkgdir}/usr/bin/vi"
 
-    install -Dm 0644 mdaffin-base-enp.network "$pkgdir/usr/lib/systemd/network/90-mdaffin-base-enp.network"
-    install -Dm 0644 mdaffin-base-wlp.network "$pkgdir/usr/lib/systemd/network/90-mdaffin-base-wlp.network"
-    install -Dm 0644 mdaffin-base-vconsole.conf "$pkgdir/etc/vconsole.conf"
-    install -Dm 0640 mdaffin-base.sudoers "$pkgdir/etc/sudoers.d/mdaffin-base"
-    install -Dm 0755 mdaffin-base.sh "$pkgdir/etc/profile.d/mdaffin-base.sh"
+    install -dm755 "${pkgdir}/usr/share/nvim/runtime/plugin/"
+    ln -sf /usr/share/vim/vimfiles/plugin/fzf.vim "${pkgdir}/usr/share/nvim/runtime/plugin/fzf.vim"
+    install -Dm 0644 mdaffin-base-enp.network "${pkgdir}/usr/lib/systemd/network/90-mdaffin-base-enp.network"
+    install -Dm 0644 mdaffin-base-wlp.network "${pkgdir}/usr/lib/systemd/network/90-mdaffin-base-wlp.network"
+    install -Dm 0644 mdaffin-base-vconsole.conf "${pkgdir}/etc/vconsole.conf"
+    install -Dm 0640 mdaffin-base.sudoers "${pkgdir}/etc/sudoers.d/mdaffin-base"
+    install -Dm 0755 mdaffin-base.sh "${pkgdir}/etc/profile.d/mdaffin-base.sh"
     install -Dm644 mdaffin-base.vim "${pkgdir}/usr/share/nvim/runtime/plugin/mdaffin-base.vim"
 }
 
@@ -80,11 +83,11 @@ package_mdaffin-desktop() {
     'xorg-xprop' 'xorg-xrandr' 'xorg-xrdb' 'xorg-xrefresh' 'xorg-xset'
     'xorg-xsetroot' 'xorg-xvinfo' 'xorg-xwd' 'xorg-xwininfo' 'xorg-xwud')
 
-    install -Dm 0644 mdaffin-desktop-sddm.conf "$pkgdir/etc/sddm.conf"
-    install -Dm 0644 mdaffin-desktop-00-keyboard.conf "$pkgdir/etc/X11/xorg.conf.d/00-keyboard.conf"
-    install -Dm 0644 mdaffin-desktop-i3-config "$pkgdir/etc/i3/mdaffin-desktop-config"
-    install -Dm 0644 mdaffin-desktop.termite "$pkgdir/etc/xdg/termite/mdaffin-desktop.config"
-    install -Dm 0755 mdaffin-desktop.sh "$pkgdir/etc/X11/xinit/xinitrc.d/30-mdaffin-desktop.sh"
+    install -Dm 0644 mdaffin-desktop-sddm.conf "${pkgdir}/etc/sddm.conf"
+    install -Dm 0644 mdaffin-desktop-00-keyboard.conf "${pkgdir}/etc/X11/xorg.conf.d/00-keyboard.conf"
+    install -Dm 0644 mdaffin-desktop-i3-config "${pkgdir}/etc/i3/mdaffin-desktop-config"
+    install -Dm 0644 mdaffin-desktop.termite "${pkgdir}/etc/xdg/termite/mdaffin-desktop.config"
+    install -Dm 0755 mdaffin-desktop.sh "${pkgdir}/etc/X11/xinit/xinitrc.d/30-mdaffin-desktop.sh"
 }
 
 package_mdaffin-laptop() {
@@ -94,8 +97,8 @@ package_mdaffin-laptop() {
 package_mdaffin-dell-xps-13() {
     depends=('mdaffin-laptop')
 
-    install -Dm 0755 mdaffin-dell-xps-13-hidpi.sh "$pkgdir/etc/X11/xinit/xinitrc.d/20-hidpi.sh"
-    install -Dm 0644 mdaffin-dell-xps-13-hidpi-monitor.conf "$pkgdir/etc/X11/xorg.conf.d/90-hidpi-monitor.conf"
+    install -Dm 0755 mdaffin-dell-xps-13-hidpi.sh "${pkgdir}/etc/X11/xinit/xinitrc.d/20-hidpi.sh"
+    install -Dm 0644 mdaffin-dell-xps-13-hidpi-monitor.conf "${pkgdir}/etc/X11/xorg.conf.d/90-hidpi-monitor.conf"
 }
 
 package_mdaffin-devel() {

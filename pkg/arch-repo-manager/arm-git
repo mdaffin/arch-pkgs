@@ -31,9 +31,10 @@ defer() { exit_cmd="$@; $exit_cmd"; }
 trap 'bash -c "$exit_cmd"' EXIT
 
 mount_repo() {
-    git -C "${GIT_REPO_DIR}" pull
-    defer 'git -C "${GIT_REPO_DIR}" add .; git -C "${GIT_REPO_DIR}" commit -am "Updated by $0"; git -C "${GIT_REPO_DIR}" push'
-    mkdir -p "${GIT_REPO_DIR}/${REPO_PATH}"
+    REPO="${GIT_REPO_DIR}/${REPO_PATH}"
+    mkdir -p "${REPO}"
+    git -C "${REPO}" pull
+    defer 'git -C "${REPO}" add .; git -C "${REPO}" commit -am "Updated by $0"; git -C "${REPO}" push'
 }
 
 init() {
@@ -63,14 +64,14 @@ build() {
 
     mount_repo
     for package in $packages; do
-        rsync --ignore-existing -v "${package}"/*.pkg.tar.xz "$REPO/$REPO_PATH"
+        rsync --ignore-existing -v "${package}"/*.pkg.tar.xz "${REPO}"
     done
-    repose --verbose --xz --root="$REPO/$REPO_PATH" "$REPO_NAME"
+    repose --verbose --xz --root="${REPO}" "${REPO_NAME}"
 }
 
 sync() {
     mount_repo
-    aursync --repo mdaffin --root $REPO/$REPO_PATH "$@"
+    aursync --repo mdaffin --root "${REPO}" "$@"
 }
 
 shell() {
