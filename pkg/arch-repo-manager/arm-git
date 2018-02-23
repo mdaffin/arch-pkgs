@@ -76,7 +76,7 @@ sync() {
 
 shell() {
     mount_repo
-    export REPO
+    export REPO="${GIT_REPO_DIR}"
     echo "You are now in a subshell with the repo mounted to \$REPO. CTRL+D or type exit to exit"
     $SHELL "$@"
 }
