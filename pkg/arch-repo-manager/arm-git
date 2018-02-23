@@ -63,19 +63,19 @@ build() {
 
     mount_repo
     for package in $packages; do
-        rsync --ignore-existing -v "${package}"/*.pkg.tar.xz "$REPO/$REPO_PATH"
+        rsync --ignore-existing -v "${package}"/*.pkg.tar.xz "$GIT_REPO_DIR/$REPO_PATH"
     done
-    repose --verbose --xz --root="$REPO/$REPO_PATH" "$REPO_NAME"
+    repose --verbose --xz --root="$GIT_REPO_DIR/$REPO_PATH" "$REPO_NAME"
 }
 
 sync() {
     mount_repo
-    aursync --repo mdaffin --root $REPO/$REPO_PATH "$@"
+    aursync --repo mdaffin --root $GIT_REPO_DIR/$REPO_PATH "$@"
 }
 
 shell() {
     mount_repo
-    export REPO
+    export REPO="${GIT_REPO_DIR}"
     echo "You are now in a subshell with the repo mounted to \$REPO. CTRL+D or type exit to exit"
     $SHELL "$@"
 }
