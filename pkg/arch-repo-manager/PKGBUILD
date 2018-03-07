@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname='arch-repo-manager'
-pkgver=0.3
+pkgver=0.4
 pkgrel=1
 pkgdesc="Manages an Arch Linux repo in Amazon S3 bucket"
 arch=('any')
@@ -8,9 +8,10 @@ url="https://github.com/mdaffin/arch-repo"
 license=('MIT')
 backup=('etc/arm/config')
 depends=('repose' 'aurutils' 's3fs-fuse')
-source=('arm')
-sha256sums=('SKIP')
+source=('arm' 'arm-git')
+sha256sums=('SKIP' 'SKIP')
 
 package() {
     install -Dm0755 arm "$pkgdir/usr/bin/arm"
+    install -Dm0755 arm-git "$pkgdir/usr/bin/arm-git"
 }
