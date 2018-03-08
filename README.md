@@ -55,13 +55,13 @@ A token from amazon s3 or digital ocean spaces in `~/.passwd-s3fs` as
 Builds all local packages in `pkg/` and uploads them to the remote repo.
 
 ```bash
-./bin/build
+./pkg/arch-repo-manager/arm build
 ```
 
 You can build one or more packages rather then all packages be specifiyng the path to each package.
 
 ```bash
-./bin/build pkg/mdaffin-{base,devel}
+./pkg/arch-repo-manager/arm build pkg/mdaffin-{base,devel}
 ```
 
 ## Managing AUR Packages
@@ -70,10 +70,10 @@ Use the `aursync` wrapper script to add/update packages from AUR.
 
 ```bash
 # build and install one or more packages
-./bin/aursync <packages>
+./pkg/arch-repo-manager/arm sync <packages>
 
 # update all aur packages
-./bin/aursync -u 
+./pkg/arch-repo-manager/arm sync -u 
 ```
 
 ## Manually manage the repo
@@ -82,7 +82,7 @@ This mounts the remote repo then spawns a shell to manage it. Once you exit the
 shell the remote remote gets unmounted.
 
 ```bash
-./bin/shell
+./pkg/arch-repo-manager/arm shell
 ```
 
 Once in the shell above the repo will be mounted at `$REPO`. When you are done type `exit` or press CTRL+D to exit the subshell this will automatically unmount the remote repo.
