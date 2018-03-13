@@ -16,7 +16,7 @@ for config in "${configs[@]}"; do
     [[ -f "$config" ]] && source "$config"
 done
 
-: "${REPO_PATH:?"REPO_PATH missing"}"
+: "${GIT_REPO_PATH:?"GIT_REPO_PATH missing"}"
 : "${GIT_REPO_BRANCH:?"REPO_BRANCH missing"}"
 : "${GIT_REPO_URL:?"REPO_URL missing"}"
 
@@ -31,7 +31,7 @@ defer() { exit_cmd="$@; $exit_cmd"; }
 trap 'bash -c "$exit_cmd"' EXIT
 
 mount_repo() {
-    REPO="${GIT_REPO_DIR}/${REPO_PATH}"
+    REPO="${GIT_REPO_DIR}/${GIT_REPO_PATH}"
     mkdir -p "${REPO}"
     git -C "${REPO}" pull
     defer 'git -C "${REPO}" add .; git -C "${REPO}" commit -am "Updated by $0"; git -C "${REPO}" push'
