@@ -1,20 +1,19 @@
 # Maintainer:  Michael Daffin <michael@daffin.io>
 
 _pkgname=vim-vue
-pkgname=neovim-vue-git
+_pkgauthor=posva
+pkgname=neovim-${_pkgauthor}-${_pkgname}-git
 pkgver=r86.a279172
-pkgrel=2
+pkgrel=3
 pkgdesc="Syntax Highlight for Vue.js components"
 arch=('any')
-url="https://github.com/posva/vim-vue"
+url="https://github.com/${_pkgauthor}/${_pkgname}"
 license=('MIT')
 groups=('neovim-plugins')
 depends=('neovim')
 makedepends=('git')
-source=('git+https://github.com/posva/vim-vue.git'
-        'neovim-vue-shim.vim')
-sha256sums=('SKIP'
-            'SKIP')
+source=('git+https://github.com/${_pkgauthor}/${_pkgname}.git')
+sha256sums=('SKIP')
 
 pkgver() {
 	cd "${srcdir}/${_pkgname}"
@@ -22,11 +21,10 @@ pkgver() {
 }
 
 package() {
-  local installpath="$pkgdir/usr/share/nvim/runtime.d"
+  local installpath="$pkgdir/usr/share/nvim/runtime/pack/${_pkgauthor}/start"
   rm -rf "${_pkgname}"/{.git,.gitignore}
   mkdir -p "$installpath"
   cp -r "${_pkgname}" "$installpath/${_pkgname}"
-  install -Dm644 neovim-vue-shim.vim "${pkgdir}/usr/share/nvim/runtime/plugin/neovim-vue-shim.vim"
 }
 
 # vim: ts=2 sw=2 et:
