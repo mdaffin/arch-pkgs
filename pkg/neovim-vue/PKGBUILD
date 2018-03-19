@@ -2,7 +2,7 @@
 
 _pkgname=vim-vue
 _pkgauthor=posva
-pkgname=neovim-posva-vim-vue-git
+pkgname=neovim-${_pkgauthor}-${_pkgname}-git
 pkgver=r86.a279172
 pkgrel=3
 pkgdesc="Syntax Highlight for Vue.js components"
@@ -12,7 +12,7 @@ license=('MIT')
 groups=('neovim-plugins')
 depends=('neovim')
 makedepends=('git')
-source=('git+https://github.com/posva/${_pkgname}.git')
+source=("git+https://github.com/posva/${_pkgname}.git")
 sha256sums=('SKIP')
 
 pkgver() {
