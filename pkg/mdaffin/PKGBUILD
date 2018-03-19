@@ -5,7 +5,7 @@ pkgname=('mdaffin-base' 'mdaffin-desktop' 'mdaffin-laptop'
 'mdaffin-devel-docker' 'mdaffin-devel-rust' 'mdaffin-devel-go'
 'mdaffin-devel-web' 'mdaffin-devel-embedded' 'mdaffin-devel-arch-repo'
 'mdaffin-devel-work')
-pkgver=8
+pkgver=9
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=('any')
@@ -33,10 +33,11 @@ source=(
     'mdaffin-devel-go.vim'
     'mdaffin-devel-go.sh'
     'mdaffin-devel-web.sh'
+    'mdaffin-devel-web.vim'
 )
 
 sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
-'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
+'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 package_mdaffin-base() {
     provides=('vim' 'vi')
@@ -137,8 +138,9 @@ package_mdaffin-devel-go() {
 }
 
 package_mdaffin-devel-web() {
-    depends=('mdaffin-devel' 'yarn' 'nodejs')
+    depends=('mdaffin-devel' 'yarn' 'nodejs' 'neovim-vue')
 
+    install -Dm644 mdaffin-devel-web.vim "${pkgdir}/usr/share/nvim/runtime/plugin/mdaffin-devel-web.vim"
     install -Dm 0755 mdaffin-devel-web.sh "${pkgdir}/etc/profile.d/mdaffin-devel-web.sh"
 }
 
