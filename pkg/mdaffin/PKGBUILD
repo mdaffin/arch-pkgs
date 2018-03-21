@@ -33,11 +33,10 @@ source=(
     'mdaffin-devel-go.vim'
     'mdaffin-devel-go.sh'
     'mdaffin-devel-web.sh'
-    #'mdaffin-devel-web.vim'
 )
 
 sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
-'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
+'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 package_mdaffin-base() {
     provides=('vim' 'vi')
@@ -140,8 +139,7 @@ package_mdaffin-devel-go() {
 package_mdaffin-devel-web() {
     depends=('mdaffin-devel' 'yarn' 'nodejs' 'neovim-posva-vim-vue-git')
 
-    install -Dm644 mdaffin-devel-web.vim "${pkgdir}/usr/share/nvim/runtime/plugin/mdaffin-devel-web.vim"
-    #install -Dm 0755 mdaffin-devel-web.sh "${pkgdir}/etc/profile.d/mdaffin-devel-web.sh"
+    install -Dm 0755 mdaffin-devel-web.sh "${pkgdir}/etc/profile.d/mdaffin-devel-web.sh"
 }
 
 package_mdaffin-devel-embedded() {
