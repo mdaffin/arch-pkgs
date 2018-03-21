@@ -17,3 +17,12 @@ noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
 noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
 noremap <silent> R :call LanguageClient_textDocument_rename()<CR>
 noremap <silent> S :call LanugageClient_textDocument_documentSymbol()<CR>
+
+" Working with buffers
+nmap <leader>T :enew<cr>
+nmap <leader>l :bnext<CR>
+nmap <leader><Right> :bnext<CR>
+nmap <leader>h :bprevious<CR>
+nmap <leader><Left> :bnext<CR>
+nmap <leader>bq :bp <BAR> bd #<CR>
+nmap <leader>bl :ls<CR>
