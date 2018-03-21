@@ -33,7 +33,7 @@ source=(
     'mdaffin-devel-go.vim'
     'mdaffin-devel-go.sh'
     'mdaffin-devel-web.sh'
-    'mdaffin-devel-web.vim'
+    #'mdaffin-devel-web.vim'
 )
 
 sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
