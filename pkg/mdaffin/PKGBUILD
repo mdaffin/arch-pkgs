@@ -6,7 +6,7 @@ pkgname=('mdaffin-base' 'mdaffin-desktop' 'mdaffin-laptop'
 'mdaffin-devel-web' 'mdaffin-devel-embedded' 'mdaffin-devel-arch-repo'
 'mdaffin-devel-work')
 pkgver=10
-pkgrel=1
+pkgrel=2
 pkgdesc="System config for mdaffin systems"
 arch=('any')
 url="https://github.com/mdaffin/arch-repo"

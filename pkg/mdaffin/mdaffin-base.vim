@@ -23,6 +23,6 @@ nmap <leader>T :enew<cr>
 nmap <leader>l :bnext<CR>
 nmap <leader><Right> :bnext<CR>
 nmap <leader>h :bprevious<CR>
-nmap <leader><Left> :bnext<CR>
+nmap <leader><Left> :bprevious<CR>
 nmap <leader>bq :bp <BAR> bd #<CR>
 nmap <leader>bl :ls<CR>
