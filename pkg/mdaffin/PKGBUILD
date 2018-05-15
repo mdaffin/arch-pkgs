@@ -53,7 +53,7 @@ package_mdaffin-base() {
     'procps-ng' 'psmisc' 's-nail' 'sed' 'shadow' 'sysfsutils' 'wpa_supplicant'
     'systemd-sysvcompat' 'tar' 'texinfo' 'usbutils' 'util-linux' 'which'
     'neovim-languageclient' 'nvim-completion-manager-git' 'neovim-fugitive'
-    'fzf')
+    'fzf' 'noto-fonts' 'noto-fonts-cjk' 'noto-fonts-emoji' 'noto-fonts-extra')
 
     install -dm 0755 "${pkgdir}/usr/bin"
     ln -s /usr/bin/nvim "${pkgdir}/usr/bin/vim"
