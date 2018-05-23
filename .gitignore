@@ -4,4 +4,4 @@
 /pkg/**/src/
 repo/
 *.log
-/root/
+root/

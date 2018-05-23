@@ -3,7 +3,7 @@ pkgbase='mdaffin'
 pkgname=(mdaffin-base mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13
 mdaffin-devel mdaffin-devel-virtualisation mdaffin-devel-languages
 mdaffin-devel-embedded mdaffin-arch-repo mdaffin-devel-work)
-pkgver=14
+pkgver=16
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -59,7 +59,7 @@ package_mdaffin-base() {
     install -Dm 0640 mdaffin-base.sudoers "${pkgdir}/etc/sudoers.d/mdaffin-base"
 
     # Debugging tools
-    depends+=(lsof bind-tools mtr socat htop iotop)
+    depends+=(lsof bind-tools mtr socat htop iotop openbsd-netcat)
 
     # Networking
     depends+=(wpa_supplicant iwd avahi nss-mdns openssh)
@@ -71,11 +71,12 @@ package_mdaffin-base() {
     install -Dm 0644 mdaffin-base-zsh.local "${pkgdir}/etc/zsh/zshrc.local"
 
     # Filesystems
-    depends+=(exfat-utils f2fs-tools)
+    depends+=(exfat-utils dosfstools f2fs-tools)
 
     # Editor
     depends+=(oni neovim python-neovim python2-neovim neovim-languageclient
     nvim-completion-manager-git neovim-fugitive)
+    depends+=(gtk2) # Missing dependency for oni
     install -dm 0755 "${pkgdir}/usr/bin"
     ln -s /usr/bin/nvim "${pkgdir}/usr/bin/vim"
     ln -s /usr/bin/nvim "${pkgdir}/usr/bin/vi"
@@ -112,7 +113,7 @@ package_mdaffin-desktop() {
     #python-xdg
 
     # Utility
-    depends+=(redshift bluez pulseaudio pulseaudio-alsa pavucontrol)
+    depends+=(redshift bluez bluez-utils pulseaudio pulseaudio-alsa pavucontrol)
 
     # Drivers
     depends+=(libinput-gestures xf86-input-libinput xf86-input-synaptics
@@ -199,5 +200,5 @@ package_mdaffin-arch-repo() {
 }
 
 package_mdaffin-devel-work() {
-    depends=(mdaffin-devel-virtualisation mdaffin-devel-languages terraform minikube)
+    depends=(mdaffin-devel-virtualisation mdaffin-devel-languages terraform minikube google-cloud-sdk kubernetes-helm rtv chromium)
 }
