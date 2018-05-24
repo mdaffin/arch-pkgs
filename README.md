@@ -42,10 +42,15 @@ For more details see these blog posts:
 ## Requirements
 
 * A bucket/space on [amazon s3] or [digital ocean]
-* The packages `s3fs-fuse` and `devtools`
+* The packages `s3cmd` and `devtools`
 
-A token from amazon s3 or digital ocean spaces in `~/.passwd-s3fs` as
-'bucketName:accessKeyId:secretAccessKey'
+A token from amazon s3 or digital ocean spaces in `~/.s3cfg` as
+
+```ini
+[default]
+access_key = <Access Key>
+secret_key = <Secret Key>
+```
 
 [amazon s3]: https://aws.amazon.com/s3/
 [digital ocean]: https://m.do.co/c/8fba3fc95fef
@@ -55,13 +60,13 @@ A token from amazon s3 or digital ocean spaces in `~/.passwd-s3fs` as
 Builds all local packages in `pkg/` and uploads them to the remote repo.
 
 ```bash
-./pkg/arch-repo-manager/arm build
+./bin/build
 ```
 
 You can build one or more packages rather then all packages be specifiyng the path to each package.
 
 ```bash
-./pkg/arch-repo-manager/arm build pkg/mdaffin-{base,devel}
+./bin/build pkg/mdaffin-{base,devel}
 ```
 
 ## Managing AUR Packages
@@ -70,19 +75,16 @@ Use the `aursync` wrapper script to add/update packages from AUR.
 
 ```bash
 # build and install one or more packages
-./pkg/arch-repo-manager/arm sync <packages>
+./bin/sync <packages>
 
 # update all aur packages
-./pkg/arch-repo-manager/arm sync -u 
+./bin/sync -u 
 ```
 
-## Manually manage the repo
+## Removing a Package
 
-This mounts the remote repo then spawns a shell to manage it. Once you exit the
-shell the remote remote gets unmounted.
+Packages can be removed from the repo with the following.
 
 ```bash
-./pkg/arch-repo-manager/arm shell
+./bin/remove <package>
 ```
-
-Once in the shell above the repo will be mounted at `$REPO`. When you are done type `exit` or press CTRL+D to exit the subshell this will automatically unmount the remote repo.
