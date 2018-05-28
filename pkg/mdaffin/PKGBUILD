@@ -3,7 +3,7 @@ pkgbase='mdaffin'
 pkgname=(mdaffin-base mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13
 mdaffin-devel mdaffin-devel-virtualisation mdaffin-devel-languages
 mdaffin-devel-embedded mdaffin-arch-repo mdaffin-devel-work)
-pkgver=16
+pkgver=17
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -21,6 +21,7 @@ source=(
     mdaffin-base-wlp.network
     mdaffin-desktop-sddm.conf
     mdaffin-desktop-00-keyboard.conf
+    mdaffin-desktop-50-mouse-acceleration.conf
     mdaffin-desktop-i3-config
     mdaffin-desktop.termite
     mdaffin-desktop.sh
@@ -37,7 +38,7 @@ source=(
 # summed through git. There is not much point in adding these extra checksums
 # here espically when they have to be changed for every update to them.
 sha256sums=(SKIP SKIP SKIP SKIP SKIP SKIP SKIP SKIP SKIP
-SKIP SKIP SKIP SKIP SKIP SKIP SKIP SKIP SKIP SKIP)
+SKIP SKIP SKIP SKIP SKIP SKIP SKIP SKIP SKIP SKIP SKIP)
 
 package_mdaffin-base() {
     provides=(vim vi)
@@ -113,11 +114,11 @@ package_mdaffin-desktop() {
     #python-xdg
 
     # Utility
-    depends+=(redshift bluez bluez-utils pulseaudio pulseaudio-alsa pavucontrol)
+    depends+=(redshift python-gobject bluez bluez-utils pulseaudio pulseaudio-alsa pavucontrol)
 
-    # Drivers
+    # Drivers and utilities
     depends+=(libinput-gestures xf86-input-libinput xf86-input-synaptics
-    xf86-video-intel xf86-video-vesa nvidia)
+    xf86-video-intel xf86-video-vesa nvidia nvidia-utils)
 
     # Xorg packages and utilities
     depends+=(xorg-xsetroot xorg-xkill xorg-xbacklight xorg-bdftopcf
@@ -130,7 +131,17 @@ package_mdaffin-desktop() {
     xorg-xwd xorg-xwininfo xorg-xwud)
 
     install -Dm 0644 mdaffin-desktop-00-keyboard.conf "${pkgdir}/etc/X11/xorg.conf.d/00-keyboard.conf"
+    install -Dm 0644 mdaffin-desktop-50-mouse-acceleration.conf "${pkgdir}/etc/X11/xorg.conf.d/50-mouse-acceleration.conf"
     install -Dm 0755 mdaffin-desktop.sh "${pkgdir}/etc/X11/xinit/xinitrc.d/30-mdaffin-desktop.sh"
+}
+
+package_mdaffin-synergy() {
+  depends=(mdaffin-desktop synergy)
+}
+
+package_mdaffin-gaming() {
+    depends=(mdaffin-desktop steam nvidia nvidia-utils lib32-nvidia-utils
+    lib32-pulse ttf-liberation wqy-zenhei)
 }
 
 package_mdaffin-laptop() {
