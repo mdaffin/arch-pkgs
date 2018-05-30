@@ -141,7 +141,7 @@ package_mdaffin-synergy() {
 
 package_mdaffin-gaming() {
     depends=(mdaffin-desktop steam nvidia nvidia-utils lib32-nvidia-utils
-    lib32-pulse ttf-liberation wqy-zenhei)
+    lib32-libpulse ttf-liberation wqy-zenhei)
 }
 
 package_mdaffin-laptop() {
