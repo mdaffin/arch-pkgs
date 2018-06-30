@@ -2,9 +2,10 @@
 set hidden
 
 set expandtab
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
+"TODO set these per filetype
+"set shiftwidth=2
+"set tabstop=2
+"set softtabstop=2
 
 set wildmenu
 set wildmode=longest:full,full
