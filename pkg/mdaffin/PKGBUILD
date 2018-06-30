@@ -3,7 +3,7 @@ pkgbase='mdaffin'
 pkgname=(mdaffin-base mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13
 mdaffin-devel mdaffin-devel-virtualisation mdaffin-devel-languages
 mdaffin-devel-embedded mdaffin-arch-repo mdaffin-devel-work mdaffin-gaming)
-pkgver=19
+pkgver=20
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
