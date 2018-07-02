@@ -3,8 +3,8 @@
 _pkgname=LanguageClient-neovim
 _pkgauthor=autozimu
 pkgname=neovim-languageclient
-pkgver=0.1.32
-pkgrel=2
+pkgver=0.1.84
+pkgrel=1
 pkgdesc="Language Server Protocol (LSP) support for vim and neovim."
 arch=('x86_64' 'i686')
 url="https://github.com/${_pkgauthor}/${_pkgname}"
@@ -13,16 +13,18 @@ groups=('neovim-plugins')
 depends=('neovim')
 makedepends=('rust')
 source=("https://github.com/${_pkgauthor}/${_pkgname}/archive/${pkgver}.tar.gz")
-sha256sums=('0c5c212dac435b054ebb4a6d6dec19ed29545e7cbc70783bd411cef21f0bd797')
+sha256sums=('7f817f59ff06ae5318d2988fb27f184cb2bcec4311414115007cf9afbc72eb3e')
 
 package() {
   cd "LanguageClient-neovim-${pkgver}"
   local installpath="$pkgdir/usr/share/nvim/runtime/pack/${_pkgauthor}/start/${_pkgname}"
   mkdir -p "$installpath"
-  cp -r "${_pkgname}" "$installpath/${_pkgname}"
   cargo install --root "$installpath"
-  install -Dm644 plugin/LanguageClient.vim "$installpath/plugin/LanguageClient.vim"
-  install -Dm644 doc/LanguageClient.txt "$installpath/doc/LanguageClient.txt"
+  cp -r plugin "$installpath/plugin"
+  cp -r doc "$installpath/doc"
+  cp -r autoload "$installpath/autoload"
+  cp -r rplugin "$installpath/rplugin"
+
   install -Dm644 LICENSE.txt "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
 
