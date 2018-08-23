@@ -3,7 +3,7 @@ pkgbase='mdaffin'
 pkgname=(mdaffin-base mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13
 mdaffin-devel mdaffin-devel-virtualisation mdaffin-devel-languages
 mdaffin-devel-embedded mdaffin-arch-repo mdaffin-devel-work mdaffin-gaming)
-pkgver=20
+pkgver=21
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -55,7 +55,7 @@ package_mdaffin-base() {
     # Explicitly removed from the base group: jfsutils lvm2 nano netctl reiserfsprogs vi xfsprogs
 
     # Extra general packages
-    depends+=(sudo ripgrep exa fd tmux wget fzf unzip dialog)
+    depends+=(sudo ripgrep exa fd tmux wget fzf unzip dialog pacman-contrib)
 
     install -Dm 0644 mdaffin-base-vconsole.conf "${pkgdir}/etc/vconsole.conf"
     install -Dm 0640 mdaffin-base.sudoers "${pkgdir}/etc/sudoers.d/mdaffin-base"
@@ -103,7 +103,7 @@ package_mdaffin-desktop() {
     install -Dm 0644 mdaffin-desktop-i3-config "${pkgdir}/etc/i3/mdaffin-desktop-config"
 
     # Login manager
-    depends+=(sddm)
+    depends+=(sddm rng-tools)
     install -Dm 0644 mdaffin-desktop-sddm.conf "${pkgdir}/etc/sddm.conf"
 
     # Applications
@@ -115,7 +115,7 @@ package_mdaffin-desktop() {
     #python-xdg
 
     # Utility
-    depends+=(redshift python-gobject bluez bluez-utils pulseaudio pulseaudio-alsa pavucontrol)
+    depends+=(redshift python-gobject bluez bluez-utils pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol scrot)
 
     # Drivers and utilities
     depends+=(libinput-gestures xf86-input-libinput xf86-input-synaptics
