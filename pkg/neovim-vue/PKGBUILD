@@ -3,8 +3,8 @@
 _pkgname=vim-vue
 _pkgauthor=posva
 pkgname=neovim-${_pkgauthor}-${_pkgname}-git
-pkgver=r86.a279172
-pkgrel=3
+pkgver=r100.23043a7
+pkgrel=1
 pkgdesc="Syntax Highlight for Vue.js components"
 arch=('any')
 url="https://github.com/${_pkgauthor}/${_pkgname}"

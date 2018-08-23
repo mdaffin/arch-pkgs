@@ -3,7 +3,7 @@ pkgbase='mdaffin'
 pkgname=(mdaffin-base mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13
 mdaffin-devel mdaffin-devel-virtualisation mdaffin-devel-languages
 mdaffin-devel-embedded mdaffin-arch-repo mdaffin-devel-work mdaffin-gaming)
-pkgver=21
+pkgver=22
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -77,7 +77,7 @@ package_mdaffin-base() {
 
     # Editor
     depends+=(oni neovim python-neovim python2-neovim neovim-languageclient
-    nvim-completion-manager-git neovim-fugitive)
+    neovim-ncm2 neovim-fugitive)
     depends+=(gtk2) # Missing dependency for oni
     install -dm 0755 "${pkgdir}/usr/bin"
     ln -s /usr/bin/nvim "${pkgdir}/usr/bin/vim"

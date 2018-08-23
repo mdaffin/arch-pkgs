@@ -11,6 +11,7 @@ set wildmenu
 set wildmode=longest:full,full
 set spelllang=en_gb
 
+" LanguageClient settings
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {}
 
@@ -19,6 +20,10 @@ nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 nnoremap <silent> S :call LanugageClient_textDocument_documentSymbol()<CR>
+
+" ncm2 settings
+autocmd BufEnter  *  call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
 
 " Working with buffers
 nmap <leader>T :enew<cr>

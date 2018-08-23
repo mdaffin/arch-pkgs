@@ -1,17 +1,17 @@
 # Maintainer:  Michael Daffin <michael@daffin.io>
 
-_pkgname=vim-grammarous
-pkgname=neovim-grammarous-git
-pkgver=r191.d52086d
+_pkgname=nvim-yarp
+pkgname=neovim-yarp
+pkgver=r41.52317ce
 pkgrel=1
-pkgdesc="A powerful grammar checker for Vim"
+pkgdesc="Yet Another Remote Plugin Framework for Neovim"
 arch=('any')
-url="https://github.com/rhysd/vim-grammarous"
+url="https://github.com/roxma/nvim-yarp"
 license=('MIT')
 groups=('neovim-plugins')
 depends=('neovim')
 makedepends=('git')
-source=("git+https://github.com/rhysd/vim-grammarous.git")
+source=("git+https://github.com/roxma/nvim-yarp.git")
 sha256sums=('SKIP')
 
 pkgver() {
@@ -19,11 +19,14 @@ pkgver() {
 	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
+
 package() {
   cd "${_pkgname}"
   local installpath="$pkgdir/usr/share/nvim/runtime"
-  install -dm 0755 "$installpath"
-  cp -r autoload doc plugin rplugin "$installpath/"
+  mkdir -p "$installpath"
+  cp -r pythonx "$installpath/pythonx"
+  cp -r autoload "$installpath/autoload"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
 
 # vim: ts=2 sw=2 et:
