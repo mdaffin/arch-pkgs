@@ -3,7 +3,7 @@ pkgbase='mdaffin'
 pkgname=(mdaffin-base mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13
 mdaffin-devel mdaffin-devel-virtualisation mdaffin-devel-languages
 mdaffin-devel-embedded mdaffin-arch-repo mdaffin-devel-work mdaffin-gaming)
-pkgver=22
+pkgver=23
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -50,7 +50,7 @@ package_mdaffin-base() {
     depends=(bash bzip2 coreutils cryptsetup device-mapper dhcpcd diffutils
     e2fsprogs file filesystem findutils gawk gcc-libs gettext glibc grep gzip
     inetutils iproute2 iputils less licenses linux logrotate man-db man-pages
-    mdadm pacman pciutils pcmciautils perl procps-ng psmisc s-nail sed shadow
+    mdadm pacman pciutils perl procps-ng psmisc s-nail sed shadow
     sysfsutils systemd-sysvcompat tar texinfo usbutils util-linux which)
     # Explicitly removed from the base group: jfsutils lvm2 nano netctl reiserfsprogs vi xfsprogs
 
