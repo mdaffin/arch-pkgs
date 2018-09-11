@@ -6,10 +6,14 @@ set -uo pipefail
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 
 REPO_URL="https://s3.eu-west-2.amazonaws.com/mdaffin-arch/repo/x86_64"
+MIRRORLIST_URL="https://www.archlinux.org/mirrorlist/?country=GB&protocol=https&use_mirror_status=on"
+
+pacman -Sy --noconfirm pacman-contrib
 
 echo "Updating mirror list"
-mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.original
-rankmirrors -n 6 /etc/pacman.d/mirrorlist.original > /etc/pacman.d/mirrorlist
+curl -s "$MIRRORLIST_URL" | \
+    sed -e 's/^#Server/Server/' -e '/^#/d' | \
+    rankmirrors -n 5 - > /etc/pacman.d/mirrorlist
 
 ### Get infomation from user ###
 hostname=$(dialog --stdout --inputbox "Enter hostname" 0 0) || exit 1
