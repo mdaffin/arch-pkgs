@@ -3,7 +3,7 @@ pkgbase='mdaffin'
 pkgname=(mdaffin-base mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13
 mdaffin-devel mdaffin-devel-virtualisation mdaffin-devel-languages
 mdaffin-devel-embedded mdaffin-arch-repo mdaffin-devel-work mdaffin-gaming)
-pkgver=23
+pkgver=24
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -213,5 +213,5 @@ package_mdaffin-arch-repo() {
 }
 
 package_mdaffin-devel-work() {
-    depends=(mdaffin-devel-virtualisation mdaffin-devel-languages terraform minikube google-cloud-sdk kubernetes-helm rtv chromium)
+    depends=(mdaffin-devel-virtualisation mdaffin-devel-languages terraform minikube kubernetes-helm rtv chromium)
 }
