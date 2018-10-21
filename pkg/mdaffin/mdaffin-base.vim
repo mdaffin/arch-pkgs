@@ -11,20 +11,6 @@ set wildmenu
 set wildmode=longest:full,full
 set spelllang=en_gb
 
-" LanguageClient settings
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_serverCommands = {}
-
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-nnoremap <silent> S :call LanugageClient_textDocument_documentSymbol()<CR>
-
-" ncm2 settings
-autocmd BufEnter  *  call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-
 " Working with buffers
 nmap <leader>T :enew<cr>
 nmap <leader>l :bnext<CR>
@@ -33,3 +19,12 @@ nmap <leader>h :bprevious<CR>
 nmap <leader><Left> :bprevious<CR>
 nmap <leader>bq :bp <BAR> bd #<CR>
 nmap <leader>bl :ls<CR>
+
+" ALE
+let g:ale_completion_enabled = 1
+let g:ale_linters = {}
+let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace']}
+let g:ale_fix_on_save = 1
+
+nnoremap <silent> K :ALEHover<CR>
+nnoremap <silent> gd :ALEGoToDefinition<CR>

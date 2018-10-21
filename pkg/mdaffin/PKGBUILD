@@ -3,7 +3,7 @@ pkgbase='mdaffin'
 pkgname=(mdaffin-base mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13
 mdaffin-devel mdaffin-devel-virtualisation mdaffin-devel-languages
 mdaffin-devel-embedded mdaffin-arch-repo mdaffin-devel-work mdaffin-gaming)
-pkgver=24
+pkgver=25
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -76,8 +76,7 @@ package_mdaffin-base() {
     depends+=(exfat-utils dosfstools f2fs-tools)
 
     # Editor
-    depends+=(oni neovim python-neovim python2-neovim neovim-languageclient
-    neovim-ncm2 neovim-fugitive)
+    depends+=(oni neovim python-neovim python2-neovim neovim-ale neovim-fugitive)
     depends+=(gtk2) # Missing dependency for oni
     install -dm 0755 "${pkgdir}/usr/bin"
     ln -s /usr/bin/nvim "${pkgdir}/usr/bin/vim"
@@ -85,7 +84,7 @@ package_mdaffin-base() {
     install -dm755 "${pkgdir}/usr/share/nvim/runtime/plugin/"
     ln -sf /usr/share/vim/vimfiles/plugin/fzf.vim "${pkgdir}/usr/share/nvim/runtime/plugin/fzf.vim"
     install -Dm 0644 mdaffin-base.vim "${pkgdir}/usr/share/nvim/runtime/plugin/mdaffin-base.vim"
-    
+
     # Fonts
     depends+=(noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
     ttf-monofur ttf-dejavu xorg-fonts-misc)
@@ -194,7 +193,7 @@ package_mdaffin-devel-languages() {
     install -Dm 0755 mdaffin-devel-go.sh "${pkgdir}/etc/profile.d/mdaffin-devel-go.sh"
 
     # Node
-    depends+=(yarn nodejs neovim-posva-vim-vue-git neovim-prettier)
+    depends+=(yarn nodejs neovim-posva-vim-vue-git)
     install -Dm 0644 mdaffin-devel-web.vim "${pkgdir}/usr/share/nvim/runtime/plugin/mdaffin-devel-web.vim"
     install -Dm 0755 mdaffin-devel-web.sh "${pkgdir}/etc/profile.d/mdaffin-devel-web.sh"
 }
