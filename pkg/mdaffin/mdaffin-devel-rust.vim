@@ -1,7 +1,5 @@
-autocmd BufReadPost *.rs setlocal filetype=rust
-
-" rustup component add rls-preview rust-analysis rust-src
-let g:LanguageClient_serverCommands.rust = ['rustup', 'run', 'stable', 'rls']
-
-let g:rustfmt_autosave = 1
-let g:rustfmt_fail_silently = 1
+" To install the rls run `rustup component add rls-preview rust-analysis rust-src`
+let g:ale_rust_rls_executable = 'rls'
+let g:ale_rust_rls_toolchain = 'stable'
+let g:ale_linters['rust'] = ['rls']
+let g:ale_fixers['rust'] = ['rustfmt']
