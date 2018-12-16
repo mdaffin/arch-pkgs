@@ -3,7 +3,7 @@ pkgbase='mdaffin'
 pkgname=(mdaffin-base mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13
 mdaffin-devel mdaffin-devel-virtualisation mdaffin-devel-languages
 mdaffin-devel-embedded mdaffin-arch-repo mdaffin-devel-work mdaffin-gaming)
-pkgver=26
+pkgver=27
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -55,13 +55,13 @@ package_mdaffin-base() {
     # Explicitly removed from the base group: jfsutils lvm2 nano netctl reiserfsprogs vi xfsprogs
 
     # Extra general packages
-    depends+=(sudo ripgrep exa fd tmux wget fzf unzip dialog pacman-contrib)
+    depends+=(sudo ripgrep exa fd tmux wget fzf unzip dialog pacman-contrib bat)
 
     install -Dm 0644 mdaffin-base-vconsole.conf "${pkgdir}/etc/vconsole.conf"
     install -Dm 0640 mdaffin-base.sudoers "${pkgdir}/etc/sudoers.d/mdaffin-base"
 
     # Debugging tools
-    depends+=(lsof bind-tools mtr socat htop iotop openbsd-netcat)
+    depends+=(lsof bind-tools mtr socat htop iotop openbsd-netcat strace)
 
     # Networking
     depends+=(wpa_supplicant iwd avahi nss-mdns openssh)
@@ -114,7 +114,7 @@ package_mdaffin-desktop() {
     #python-xdg
 
     # Utility
-    depends+=(redshift python-gobject bluez bluez-utils pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol scrot)
+    depends+=(redshift python-gobject bluez bluez-utils pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol paprefs scrot)
 
     # Drivers and utilities
     depends+=(libinput-gestures xf86-input-libinput xf86-input-synaptics
@@ -188,12 +188,12 @@ package_mdaffin-devel-languages() {
     install -Dm 0755 mdaffin-devel-rust.sh "${pkgdir}/etc/profile.d/mdaffin-devel-rust.sh"
 
     # Go
-    depends+=(go dep neovim-go)
+    depends+=(go neovim-go)
     install -Dm 0644 mdaffin-devel-go.vim "${pkgdir}/usr/share/nvim/runtime/plugin/mdaffin-devel-go.vim"
     install -Dm 0755 mdaffin-devel-go.sh "${pkgdir}/etc/profile.d/mdaffin-devel-go.sh"
 
     # Node
-    depends+=(yarn nodejs neovim-posva-vim-vue-git)
+    depends+=(yarn npm nodejs vale)
     install -Dm 0644 mdaffin-devel-web.vim "${pkgdir}/usr/share/nvim/runtime/plugin/mdaffin-devel-web.vim"
     install -Dm 0755 mdaffin-devel-web.sh "${pkgdir}/etc/profile.d/mdaffin-devel-web.sh"
 }

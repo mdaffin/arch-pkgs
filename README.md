@@ -1,9 +1,10 @@
 # Arch Repo
 
+A set of packages for there benifit asd with a this.
+
 A set of packages and tools for managing arch linux install via a custom repo.
 
-The idea is to manage a set of archlinux boxes with custom meta packages that
-install/configure sets of packages as well as to build/maintain aur packages.
+The idea is to manage a set of archlinux boxes with custom meta packages that install/configure sets of packages as well as to build/maintain aur packages.
 
 For example `mdaffin-base` will install packages that I always install on both
 servers and desktops. And `mdaffin-desktop` will install/configure i3, sddm and
@@ -35,14 +36,14 @@ For more details see these blog posts:
 - **Part 2:** [Managing Arch Linux with Meta Packages]
 - **Part 3:** [Creating a Custom Arch Linux Installer]
 
-[Hosting an Arch Linux Repo in an Amazon S3 Bucket]: https://disconnected.systems/blog/archlinux-repo-in-aws-bucket
-[Managing Arch Linux with Meta Packages]: https://disconnected.systems/blog/archlinux-meta-packages
-[Creating a Custom Arch Linux Installer]: https://disconnected.systems/blog/archlinux-installer
+[hosting an arch linux repo in an amazon s3 bucket]: https://disconnected.systems/blog/archlinux-repo-in-aws-bucket
+[managing arch linux with meta packages]: https://disconnected.systems/blog/archlinux-meta-packages
+[creating a custom arch linux installer]: https://disconnected.systems/blog/archlinux-installer
 
 ## Requirements
 
-* A bucket/space on [amazon s3] or [digital ocean]
-* The packages `s3cmd` and `devtools`
+- A bucket/space on [amazon s3] or [digital ocean]
+- The packages `s3cmd` and `devtools`
 
 A token from amazon s3 or digital ocean spaces in `~/.s3cfg` as
 
@@ -78,7 +79,7 @@ Use the `aursync` wrapper script to add/update packages from AUR.
 ./bin/sync <packages>
 
 # update all aur packages
-./bin/sync -u 
+./bin/sync -u
 ```
 
 ## Removing a Package
