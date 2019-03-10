@@ -1,0 +1,16 @@
+python-six
+python-chevron
+python-click
+python-enum34
+python-Flask
+python-boto3
+python-PyYAML
+python-cookiecutter
+python-aws-sam-translator
+python-docker
+python-dateparser
+python-python-dateutil
+python-pathlib2
+python-requests
+python-aws_lambda_builders
+python-serverlessrepo
