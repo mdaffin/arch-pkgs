@@ -2,8 +2,8 @@
 pkgbase='mdaffin'
 pkgname=(mdaffin-base mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13
 mdaffin-devel mdaffin-devel-virtualisation mdaffin-devel-languages
-mdaffin-devel-embedded mdaffin-arch-repo mdaffin-devel-work mdaffin-gaming)
-pkgver=27
+mdaffin-devel-embedded mdaffin-arch-repo mdaffin-devel-devops mdaffin-gaming)
+pkgver=29
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -55,7 +55,7 @@ package_mdaffin-base() {
     # Explicitly removed from the base group: jfsutils lvm2 nano netctl reiserfsprogs vi xfsprogs
 
     # Extra general packages
-    depends+=(sudo ripgrep exa fd tmux wget fzf unzip dialog pacman-contrib bat)
+    depends+=(sudo ripgrep exa fd tmux wget fzf unzip dialog pacman-contrib bat ncdu keybase)
 
     install -Dm 0644 mdaffin-base-vconsole.conf "${pkgdir}/etc/vconsole.conf"
     install -Dm 0640 mdaffin-base.sudoers "${pkgdir}/etc/sudoers.d/mdaffin-base"
@@ -98,7 +98,7 @@ package_mdaffin-desktop() {
     depends=(mdaffin-base)
 
     # I3 Desktop
-    depends+=(rofi i3-wm i3status i3blocks i3lock dmenu)
+    depends+=(rofi i3-wm i3status i3blocks i3lock dmenu compton)
     install -Dm 0644 mdaffin-desktop-i3-config "${pkgdir}/etc/i3/mdaffin-desktop-config"
 
     # Login manager
@@ -106,7 +106,7 @@ package_mdaffin-desktop() {
     install -Dm 0644 mdaffin-desktop-sddm.conf "${pkgdir}/etc/sddm.conf"
 
     # Applications
-    depends+=(termite firefox)
+    depends+=(alacritty firefox)
     install -Dm 0644 mdaffin-desktop.termite "${pkgdir}/etc/xdg/termite/mdaffin-desktop.config"
 
     # Not sure why these where installed :/ keeping for refence incase something breaks
@@ -133,10 +133,6 @@ package_mdaffin-desktop() {
     install -Dm 0644 mdaffin-desktop-00-keyboard.conf "${pkgdir}/etc/X11/xorg.conf.d/00-keyboard.conf"
     install -Dm 0644 mdaffin-desktop-50-mouse-acceleration.conf "${pkgdir}/etc/X11/xorg.conf.d/50-mouse-acceleration.conf"
     install -Dm 0755 mdaffin-desktop.sh "${pkgdir}/etc/X11/xinit/xinitrc.d/30-mdaffin-desktop.sh"
-}
-
-package_mdaffin-synergy() {
-  depends=(mdaffin-desktop synergy)
 }
 
 package_mdaffin-gaming() {
@@ -211,6 +207,6 @@ package_mdaffin-arch-repo() {
     depends+=(mdaffin-devel devtools aurutils s3cmd)
 }
 
-package_mdaffin-devel-work() {
-    depends=(mdaffin-devel-virtualisation mdaffin-devel-languages terraform minikube kubernetes-helm rtv chromium)
+package_mdaffin-devel-devops() {
+    depends=(mdaffin-devel-virtualisation mdaffin-devel-languages terraform minikube kubernetes-helm kubectl-bin)
 }

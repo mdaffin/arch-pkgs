@@ -27,8 +27,8 @@ exec --no-startup-id xsetroot -solid "#222222"
 
 # General applications
 exec --no-startup-id redshift-gtk
-exec --no-startup-id synergy
 exec --no-startup-id steam
+exec --no-startup-id compton
 exec --no-startup-id firefox -P default
 
 # Font for window titles. Will also be used by the bar unless a different font
