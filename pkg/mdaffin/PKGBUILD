@@ -3,7 +3,7 @@ pkgbase='mdaffin'
 pkgname=(mdaffin-base mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13
 mdaffin-devel mdaffin-devel-virtualisation mdaffin-devel-languages
 mdaffin-devel-embedded mdaffin-arch-repo mdaffin-devel-devops mdaffin-gaming)
-pkgver=29
+pkgver=30
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -189,7 +189,7 @@ package_mdaffin-devel-languages() {
     install -Dm 0755 mdaffin-devel-go.sh "${pkgdir}/etc/profile.d/mdaffin-devel-go.sh"
 
     # Node
-    depends+=(yarn npm nodejs vale)
+    depends+=(yarn npm nodejs prettier vale)
     install -Dm 0644 mdaffin-devel-web.vim "${pkgdir}/usr/share/nvim/runtime/plugin/mdaffin-devel-web.vim"
     install -Dm 0755 mdaffin-devel-web.sh "${pkgdir}/etc/profile.d/mdaffin-devel-web.sh"
 }
