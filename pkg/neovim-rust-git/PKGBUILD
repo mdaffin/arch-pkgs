@@ -2,7 +2,7 @@
 
 _pkgname=rust.vim
 pkgname=neovim-rust-git
-pkgver=r472.e2b16e2
+pkgver=r508.2234f0d
 pkgrel=1
 pkgdesc="Vim configuration for Rust."
 arch=('any')
