@@ -1,45 +1,19 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgbase='mdaffin'
-pkgname=(mdaffin-base mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13
-mdaffin-devel mdaffin-devel-virtualisation mdaffin-devel-languages
-mdaffin-devel-embedded mdaffin-arch-repo mdaffin-devel-devops mdaffin-gaming)
+pkgname=(
+    mdaffin-base mdaffin-desktop mdaffin-router mdaffin-laptop mdaffin-dell-xps-13 mdaffin-devel
+    mdaffin-devel-virtualisation mdaffin-devel-languages mdaffin-devel-embedded
+    mdaffin-arch-repo mdaffin-devel-devops mdaffin-gaming
+)
 pkgver=30
-pkgrel=1
+pkgrel=3
 pkgdesc="System config for mdaffin systems"
 arch=(any)
 url="https://github.com/mdaffin/arch-repo"
 license=(MIT)
 groups=(mdaffin)
 
-source=(
-    mdaffin-base.sh
-    mdaffin-base.vim
-    mdaffin-base.sudoers
-    mdaffin-base-zsh.local
-    mdaffin-base-vconsole.conf
-    mdaffin-base-enp.network
-    mdaffin-base-wlp.network
-    mdaffin-desktop-sddm.conf
-    mdaffin-desktop-00-keyboard.conf
-    mdaffin-desktop-50-mouse-acceleration.conf
-    mdaffin-desktop-i3-config
-    mdaffin-desktop.termite
-    mdaffin-desktop.sh
-    mdaffin-dell-xps-13-hidpi.sh
-    mdaffin-dell-xps-13-hidpi-monitor.conf
-    mdaffin-devel-rust.vim
-    mdaffin-devel-rust.sh
-    mdaffin-devel-go.vim
-    mdaffin-devel-go.sh
-    mdaffin-devel-web.sh
-    mdaffin-devel-web.vim
-)
-
-# The sources all live in this repo and so are version controlled and checked
-# summed through git. There is not much point in adding these extra checksums
-# here espically when they have to be changed for every update to them.
-sha256sums=(SKIP SKIP SKIP SKIP SKIP SKIP SKIP SKIP SKIP
-SKIP SKIP SKIP SKIP SKIP SKIP SKIP SKIP SKIP SKIP SKIP SKIP)
+rootdir=$PWD
 
 package_mdaffin-base() {
     provides=(vim vi)
@@ -57,9 +31,6 @@ package_mdaffin-base() {
     # Extra general packages
     depends+=(sudo ripgrep exa fd tmux wget fzf unzip dialog pacman-contrib bat ncdu keybase)
 
-    install -Dm 0644 mdaffin-base-vconsole.conf "${pkgdir}/etc/vconsole.conf"
-    install -Dm 0640 mdaffin-base.sudoers "${pkgdir}/etc/sudoers.d/mdaffin-base"
-
     # Debugging tools
     depends+=(lsof bind-tools mtr socat htop iotop openbsd-netcat strace)
 
@@ -69,28 +40,18 @@ package_mdaffin-base() {
     # Shells
     depends+=(zsh grml-zsh-config)
 
-    install -Dm 0755 mdaffin-base.sh "${pkgdir}/etc/profile.d/mdaffin-base.sh"
-    install -Dm 0644 mdaffin-base-zsh.local "${pkgdir}/etc/zsh/zshrc.local"
-
     # Filesystems
     depends+=(exfat-utils dosfstools f2fs-tools)
 
     # Editor
     depends+=(oni neovim python-neovim neovim-ale neovim-fugitive)
     depends+=(gtk2) # Missing dependency for oni
-    install -dm 0755 "${pkgdir}/usr/bin"
-    ln -s /usr/bin/nvim "${pkgdir}/usr/bin/vim"
-    ln -s /usr/bin/nvim "${pkgdir}/usr/bin/vi"
-    install -dm755 "${pkgdir}/usr/share/nvim/runtime/plugin/"
-    ln -sf /usr/share/vim/vimfiles/plugin/fzf.vim "${pkgdir}/usr/share/nvim/runtime/plugin/fzf.vim"
-    install -Dm 0644 mdaffin-base.vim "${pkgdir}/usr/share/nvim/runtime/plugin/mdaffin-base.vim"
 
     # Fonts
     depends+=(noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
     ttf-monofur ttf-dejavu xorg-fonts-misc)
 
-    install -Dm 0644 mdaffin-base-enp.network "${pkgdir}/usr/lib/systemd/network/90-mdaffin-base-enp.network"
-    install -Dm 0644 mdaffin-base-wlp.network "${pkgdir}/usr/lib/systemd/network/90-mdaffin-base-wlp.network"
+    cp -a "$rootdir/base/"* "$pkgdir"
 }
 
 package_mdaffin-desktop() {
@@ -99,19 +60,12 @@ package_mdaffin-desktop() {
 
     # I3 Desktop
     depends+=(rofi i3-wm i3status i3blocks i3lock dmenu compton)
-    install -Dm 0644 mdaffin-desktop-i3-config "${pkgdir}/etc/i3/mdaffin-desktop-config"
 
     # Login manager
     depends+=(sddm rng-tools)
-    install -Dm 0644 mdaffin-desktop-sddm.conf "${pkgdir}/etc/sddm.conf"
 
     # Applications
     depends+=(alacritty firefox)
-    install -Dm 0644 mdaffin-desktop.termite "${pkgdir}/etc/xdg/termite/mdaffin-desktop.config"
-
-    # Not sure why these where installed :/ keeping for refence incase something breaks
-    #openvpn
-    #python-xdg
 
     # Utility
     depends+=(redshift python-gobject bluez bluez-utils pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol paprefs scrot)
@@ -130,9 +84,13 @@ package_mdaffin-desktop() {
     xorg-xrandr xorg-xrdb xorg-xrefresh xorg-xset xorg-xsetroot xorg-xvinfo
     xorg-xwd xorg-xwininfo xorg-xwud)
 
-    install -Dm 0644 mdaffin-desktop-00-keyboard.conf "${pkgdir}/etc/X11/xorg.conf.d/00-keyboard.conf"
-    install -Dm 0644 mdaffin-desktop-50-mouse-acceleration.conf "${pkgdir}/etc/X11/xorg.conf.d/50-mouse-acceleration.conf"
-    install -Dm 0755 mdaffin-desktop.sh "${pkgdir}/etc/X11/xinit/xinitrc.d/30-mdaffin-desktop.sh"
+    cp -a "$rootdir/desktop/"* "$pkgdir"
+}
+
+package_mdaffin-router() {
+    depends=(rp-pppoe dhcp dnsmasq shorewall)
+
+    cp -a "$rootdir/router/"* "$pkgdir"
 }
 
 package_mdaffin-gaming() {
@@ -147,10 +105,7 @@ package_mdaffin-laptop() {
 package_mdaffin-dell-xps-13() {
     depends=('mdaffin-laptop')
 
-    install -Dm 0755 mdaffin-dell-xps-13-hidpi.sh \
-        "${pkgdir}/etc/X11/xinit/xinitrc.d/20-hidpi.sh"
-    install -Dm 0644 mdaffin-dell-xps-13-hidpi-monitor.conf \
-        "${pkgdir}/etc/X11/xorg.conf.d/90-hidpi-monitor.conf"
+    cp -a "$rootdir/desktop/"* "$pkgdir"
 }
 
 package_mdaffin-devel() {
@@ -180,18 +135,14 @@ package_mdaffin-devel-languages() {
 
     # Rust
     depends+=(neovim-rust-git rustup)
-    install -Dm 0644 mdaffin-devel-rust.vim "${pkgdir}/usr/share/nvim/runtime/plugin/mdaffin-devel-rust.vim"
-    install -Dm 0755 mdaffin-devel-rust.sh "${pkgdir}/etc/profile.d/mdaffin-devel-rust.sh"
 
     # Go
     depends+=(go neovim-go)
-    install -Dm 0644 mdaffin-devel-go.vim "${pkgdir}/usr/share/nvim/runtime/plugin/mdaffin-devel-go.vim"
-    install -Dm 0755 mdaffin-devel-go.sh "${pkgdir}/etc/profile.d/mdaffin-devel-go.sh"
 
     # Node
     depends+=(yarn npm nodejs prettier vale)
-    install -Dm 0644 mdaffin-devel-web.vim "${pkgdir}/usr/share/nvim/runtime/plugin/mdaffin-devel-web.vim"
-    install -Dm 0755 mdaffin-devel-web.sh "${pkgdir}/etc/profile.d/mdaffin-devel-web.sh"
+
+    cp -a "$rootdir/devel-languages/"* "$pkgdir"
 }
 
 package_mdaffin-devel-embedded() {
