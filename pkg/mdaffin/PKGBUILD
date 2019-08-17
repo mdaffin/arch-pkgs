@@ -88,7 +88,7 @@ package_mdaffin-desktop() {
 }
 
 package_mdaffin-router() {
-    depends=(rp-pppoe dhcp dnsmasq shorewall)
+    depends=(rp-pppoe dnsmasq shorewall)
 
     cp -a "$rootdir/router/"* "$pkgdir"
 }

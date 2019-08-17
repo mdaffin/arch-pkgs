@@ -1,0 +1,5 @@
+[Match]
+Name=lan*
+
+[Network]
+Address=192.168.0.1/24

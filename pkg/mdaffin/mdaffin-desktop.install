@@ -3,7 +3,9 @@ post_install() {
 }
 
 post_upgrade() {
+    systemctl enable --now systemd-resolved
     systemctl enable --now sddm rngd
-    cp /etc/i3/mdaffin-desktop-config /etc/i3/config 
+    ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+    cp /etc/i3/mdaffin-desktop-config /etc/i3/config
     cp /etc/xdg/termite/mdaffin-desktop.config /etc/xdg/termite/config
 }
