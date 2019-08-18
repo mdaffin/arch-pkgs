@@ -1,0 +1,64 @@
+# Maintainer: Michael Daffin <michael@daffin.io>
+pkgname=mdaffin-devel
+pkgver=31
+pkgrel=1
+pkgdesc="System config for mdaffin systems"
+arch=(any)
+url="https://github.com/mdaffin/arch-repo"
+license=(MIT)
+groups=(mdaffin)
+
+conflicts=(repose)
+replaces=(mdaffin-devel-embedded mdaffin-devel-languages mdaffin-devel-virtualisation mdaffin-arch-repo)
+depends=(mdaffin-base)
+
+# Base Group
+depends+=(
+    autoconf automake binutils bison fakeroot file findutils flex gawk gcc
+    gettext grep groff gzip libtool m4 make pacman patch pkg-config sed sudo
+    systemd texinfo util-linux which
+)
+
+# General tools
+depends+=(git cmake jq musl stress aws-cli)
+
+# Arch Packaging
+depends+=(devtools aurutils s3cmd)
+
+# Virtualisation
+depends+=(virtualbox virtualbox-host-modules-arch vagrant virt-manager virt-viewer)
+
+# Docker
+depends+=(docker docker-compose dnsmasq minikube kubectl)
+
+# Automation tools
+depends+=(terraform)
+
+# Embedded development
+depends+=(qemu qemu-arch-extra picocom ddrescue)
+# Not sure if this is still needed I believe it was for embedded rust
+# arm-linux-gnueabihf-gcc
+
+# Rust
+depends+=(neovim-rust-git rustup)
+
+# Go
+depends+=(go neovim-go)
+
+# Python
+depends+=(python-black python-pycodestyle python-pylint flake8)
+
+# Node
+depends+=(yarn npm nodejs prettier)
+
+# Text
+depends+=(vale)
+
+# Blog
+depends+=(wkhtmltopdf zola-bin)
+
+rootdir=$PWD
+
+package() {
+    cp -a "$rootdir/files/"* "$pkgdir"
+}

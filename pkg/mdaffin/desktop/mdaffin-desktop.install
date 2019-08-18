@@ -1,0 +1,15 @@
+post_install() {
+    post_upgrade
+}
+
+post_upgrade() {
+    systemctl start \
+        avahi-daemon.service \
+        sddm.service \
+        systemd-networkd.service \
+        systemd-resolved.service \
+        rngd.service
+    ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+    cp /etc/i3/mdaffin-desktop-config /etc/i3/config
+    cp /etc/xdg/termite/mdaffin-desktop.config /etc/xdg/termite/config
+}
