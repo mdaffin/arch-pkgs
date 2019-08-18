@@ -10,6 +10,7 @@ groups=(mdaffin)
 
 provides=(vim vi)
 conflicts=(vim vi)
+replaces=(vim vi)
 install=mdaffin-base.install
 
 # Base group
