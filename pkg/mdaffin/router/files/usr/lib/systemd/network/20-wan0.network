@@ -1,0 +1,5 @@
+[Match]
+Name=wan*
+
+[Network]
+DHCP=ipv4

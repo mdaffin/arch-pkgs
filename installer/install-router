@@ -35,14 +35,14 @@ devicelist=$(lsblk -dplnx size -o name,size | grep -Ev "boot|rpmb|loop" | tac)
 device=$(dialog --stdout --menu "Select installtion disk" 0 0 0 ${devicelist}) || exit 1
 clear
 
-interfacelist=$(ls -1d /sys/class/net/en* | nl -w 1 -s " ")
+interfacelist=$(ls -1d /sys/class/net/en* | sed 's/$/ ./')
 waninterface=$(dialog --stdout --menu "Select wan interface" 0 0 0 ${interfacelist}) || exit 1
-wanmac=$(cat /sys/class/net/${waninterface}/address)
+wanmac=$(cat ${waninterface}/address)
 clear
 
-interfacelist=$(ls -1d /sys/class/net/en* | grep -v "^waninterface$" | nl -w 1 -s " ")
+interfacelist=$(ls -1d /sys/class/net/en* | grep -v "^${waninterface}$" | sed 's/$/ ./')
 laninterface=$(dialog --stdout --menu "Select lan interface" 0 0 0 ${interfacelist}) || exit 1
-lanmac=$(cat /sys/class/net/${waninterface}/address)
+lanmac=$(cat ${laninterface}/address)
 clear
 
 ### Set up logging ###
@@ -87,7 +87,7 @@ SigLevel = Optional TrustAll
 Server = $REPO_URL
 EOF
 
-pacstrap /mnt mdaffin-base
+pacstrap /mnt mdaffin-base sshd virtualbox-guest-utils-nox
 genfstab -t PARTUUID /mnt >> /mnt/etc/fstab
 echo "${hostname}" > /mnt/etc/hostname
 
