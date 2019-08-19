@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname=mdaffin-base
-pkgver=31
+pkgver=32
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -45,14 +45,9 @@ depends+=(exfat-utils dosfstools f2fs-tools)
 # Editor
 depends+=(neovim python-neovim neovim-ale neovim-fugitive)
 
-# Fonts
-depends+=(
-    noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-monofur
-    ttf-dejavu xorg-fonts-misc
-)
-
 rootdir=$PWD
 
 package() {
     cp -a "$rootdir/files/"* "$pkgdir"
+    chmod -R 0750 "$pkgdir/etc/sudoers.d"
 }

@@ -1,7 +1,7 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgbase=mdaffin-desktop
 pkgname=(mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13)
-pkgver=31
+pkgver=32
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -50,6 +50,12 @@ package_mdaffin-desktop() {
         xorg-xlsclients xorg-xmodmap xorg-xpr xorg-xprop xorg-xrandr xorg-xrdb
         xorg-xrefresh xorg-xset xorg-xsetroot xorg-xvinfo xorg-xwd xorg-xwininfo
         xorg-xwud
+    )
+
+    # Fonts
+    depends+=(
+        noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-monofur
+        ttf-dejavu xorg-fonts-misc
     )
 
     optdepends=(krita okular chromium netdata nordvpn-bin)
