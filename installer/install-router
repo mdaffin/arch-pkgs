@@ -45,6 +45,14 @@ laninterface=$(dialog --stdout --menu "Select lan interface" 0 0 0 ${interfaceli
 lanmac=$(cat ${laninterface}/address)
 clear
 
+isp_user=$(dialog --stdout --inputbox "Enter IPS username" 0 0) || exit 1
+clear
+: ${isp_user:?"isp_user cannot be empty"}
+
+isp_password=$(dialog --stdout --inputbox "Enter IPS password" 0 0) || exit 1
+clear
+: ${isp_password:?"isp_password cannot be empty"}
+
 ### Set up logging ###
 exec 1> >(tee "stdout.log")
 exec 2> >(tee "stderr.log")
@@ -126,6 +134,21 @@ MACAddress=${lanmac}
 [Link]
 Description=First local area network interface
 Name=lan0
+EOF
+
+cat <<EOF > /mnt/etc/ppp/peers/wan0
+plugin rp-pppoe.so
+wan0
+name "${isp_user}"
+#usepeerdns
+presist
+defaultroute
+hide-password
+noauth
+EOF
+
+cat <<EOF > /mnt/etc/ppp/chap-secrets
+${isp_user} * ${isp_password}
 EOF
 
 echo "LANG=en_GB.UTF-8" > /mnt/etc/locale.conf
