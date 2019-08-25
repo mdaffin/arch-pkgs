@@ -43,7 +43,7 @@ depends+=(zsh grml-zsh-config)
 depends+=(exfat-utils dosfstools f2fs-tools)
 
 # Editor
-depends+=(neovim python-neovim neovim-ale neovim-fugitive)
+depends+=(neovim python-neovim neovim-ale-git neovim-fugitive)
 
 rootdir=$PWD
 

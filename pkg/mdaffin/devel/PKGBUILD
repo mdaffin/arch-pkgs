@@ -39,11 +39,14 @@ depends+=(qemu qemu-arch-extra picocom ddrescue)
 # Not sure if this is still needed I believe it was for embedded rust
 # arm-linux-gnueabihf-gcc
 
+# Neovim
+depends+=(neovim-ale-git neovim-go-git neovim-rust-git neovim-vue-git)
+
 # Rust
-depends+=(neovim-rust-git rustup)
+depends+=(rustup)
 
 # Go
-depends+=(go neovim-go)
+depends+=(go)
 
 # Python
 depends+=(python-black python-pycodestyle python-pylint flake8)
