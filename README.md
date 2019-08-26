@@ -6,13 +6,14 @@ repository.
 `pkg/mdaffin` contains the meta-packages for my systems and do not strictly
 follow the Arch Linux packaging guidelines. Instead, I designed the packages
 for easy maintenance. I will sometimes change the contents of the meta-packages
-to suite my requirements, as such they are not suitable for general use.
-Instead use them as a base for creating your own meta-packages.
+to suite my requirements, as such you should not use them directly. Instead use
+them as a base for creating your own meta-packages.
 
 The `installer` directory contains installers for my different system with
 `installer/install-arch` containing the general purpose installer. Use this as
 a base for creating your own. You can install them from a normal Arch Linux ISO
-with curl and bash such as (using short URL via git.io):
+with curl and bash such as the following (using git.io URL shortener to make it
+easier to type).
 
 **WARNING** This will wipe a drive and install Arch Linux on it. **DO NOT** run
 unless you have read through it first.
@@ -30,6 +31,14 @@ For more details see these blog posts:
 [hosting an arch linux repository in an amazon s3 bucket]: https://disconnected.systems/blog/archlinux-repo-in-aws-bucket
 [managing arch linux with meta packages]: https://disconnected.systems/blog/archlinux-meta-packages
 [creating a custom arch linux installer]: https://disconnected.systems/blog/archlinux-installer
+
+## Contributing
+
+I welcome fixes for bugs or better ways of doing something. But these packages
+and installers are for my personal use and as such I will not approve pull
+requests for features I do not need. Feel free to raise issues if you want help
+with your own packages, have an interesting idea, want some clarification or
+want to discuss something generally.
 
 ## Requirements
 
