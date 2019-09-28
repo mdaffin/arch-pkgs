@@ -23,7 +23,7 @@ package_mdaffin-desktop() {
     depends+=(wpa_supplicant wireless_tools iwd avahi nss-mdns openssh)
 
     # Login manager
-    depends+=(sddm rng-tools)
+    depends+=(sddm rng-tools archlinux-themes-sddm)
 
     # Applications
     depends+=(alacritty firefox gopass)
