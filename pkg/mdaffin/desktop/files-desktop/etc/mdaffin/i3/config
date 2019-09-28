@@ -28,7 +28,6 @@ exec --no-startup-id xsetroot -solid "#222222"
 # General applications
 exec --no-startup-id redshift-gtk
 exec --no-startup-id steam
-exec --no-startup-id compton
 exec --no-startup-id firefox -P default
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -146,28 +145,31 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+bindsym $mod+Mod1+Left  resize shrink width 5 px or 5 ppt
+bindsym $mod+Mod1+Down  resize grow height 5 px or 5 ppt
+bindsym $mod+Mod1+Up    resize shrink height 5 px or 5 ppt
+bindsym $mod+Mod1+Right resize grow width 5 px or 5 ppt
+
+bindsym $mod+Mod1+Shift+Left  resize shrink width 1 px or 1 ppt
+bindsym $mod+Mod1+Shift+Down  resize grow height 1 px or 1 ppt
+bindsym $mod+Mod1+Shift+Up    resize shrink height 1 px or 1 ppt
+bindsym $mod+Mod1+Shift+Right resize grow width 1 px or 1 ppt
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+    bindsym Left  resize shrink width 5 px or 5 ppt
+    bindsym Down  resize grow height 5 px or 5 ppt
+    bindsym Up    resize shrink height 5 px or 5 ppt
+    bindsym Right resize grow width 5 px or 5 ppt
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym $left       resize shrink width 5 px or 5 ppt
-        bindsym $down       resize grow height 5 px or 5 ppt
-        bindsym $up         resize shrink height 5 px or 5 ppt
-        bindsym $right      resize grow width 5 px or 5 ppt
+    bindsym Shift+Left  resize shrink width 1 px or 1 ppt
+    bindsym Shift+Down  resize grow height 1 px or 1 ppt
+    bindsym Shift+Up    resize shrink height 1 px or 1 ppt
+    bindsym Shift+Right resize grow width 1 px or 1 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left        resize shrink width 5 px or 5 ppt
-        bindsym Down        resize grow height 5 px or 5 ppt
-        bindsym Up          resize shrink height 5 px or 5 ppt
-        bindsym Right       resize grow width 5 px or 5 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -175,5 +177,5 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+    status_command i3status
 }
