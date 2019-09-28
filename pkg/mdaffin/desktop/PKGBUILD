@@ -26,7 +26,7 @@ package_mdaffin-desktop() {
     depends+=(sddm rng-tools)
 
     # Applications
-    depends+=(alacritty termite firefox gopass termite)
+    depends+=(alacritty firefox gopass)
 
     # Utility
     depends+=(
