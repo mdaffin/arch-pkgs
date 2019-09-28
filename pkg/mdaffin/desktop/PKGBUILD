@@ -1,7 +1,7 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgbase=mdaffin-desktop
 pkgname=(mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13)
-pkgver=32
+pkgver=33
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -17,7 +17,7 @@ package_mdaffin-desktop() {
     depends=(mdaffin-base)
 
     # I3 Desktop
-    depends+=(rofi i3-wm i3status i3blocks i3lock dmenu compton)
+    depends+=(rofi i3-wm i3status i3blocks i3lock)
 
     # Networking
     depends+=(wpa_supplicant wireless_tools iwd avahi nss-mdns openssh)
