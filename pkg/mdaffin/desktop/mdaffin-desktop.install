@@ -6,4 +6,5 @@ post_upgrade() {
     ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
     cp /etc/mdaffin/i3/config /etc/i3/config
     cp /etc/xdg/termite/mdaffin-desktop.config /etc/xdg/termite/config
+    cp /etc/mdaffin/libinput-gestures.conf /etc/i3/libinput-gestures.conf
 }

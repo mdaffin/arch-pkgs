@@ -36,8 +36,8 @@ package_mdaffin-desktop() {
 
     # Drivers and utilities
     depends+=(
-        libinput-gestures xf86-input-libinput xf86-input-synaptics xf86-video-intel
-        xf86-video-vesa nvidia nvidia-utils
+        libinput-gestures xf86-input-libinput xf86-video-intel xf86-video-vesa
+        nvidia nvidia-utils
     )
 
     # Xorg packages and utilities
