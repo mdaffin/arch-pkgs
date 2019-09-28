@@ -6,6 +6,7 @@ trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 REMOTE_PATH=s3://mdaffin-arch/repo/x86_64
 LOCAL_PATH=$HOME/.local/share/arch-repo
 REPO_NAME=mdaffin
+CHROOT="$HOME/.local/share/arch-root"
 
 mkdir -p "$LOCAL_PATH"
 
@@ -18,7 +19,7 @@ ln -sf "$REPO_NAME.files.tar.xz" "$LOCAL_PATH/$REPO_NAME.files"
 ## remote so that we do not reupload them
 rm -f "$LOCAL_PATH/"*.pkg.tar.xz
 
-aursync --repo "$REPO_NAME" --chroot --root "$LOCAL_PATH" "$@" || true
+aur sync --database "$REPO_NAME" --root "$LOCAL_PATH" --chroot --directory "$CHROOT" -- "$@" || true
 
 ## Sync local DB to remote ##
 s3cmd sync --follow-symlinks --acl-public \

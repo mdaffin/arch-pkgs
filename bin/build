@@ -20,12 +20,11 @@ mkdir -p "$CHROOT"
     pacman pciutils perl procps-ng psmisc s-nail sed shadow sysfsutils \
     systemd-sysvcompat tar texinfo usbutils util-linux which base-devel
 
-for package in $PACKAGES; do
-    cd "$package"
-    rm -f *.pkg.tar.xz
-    makechrootpkg -cur $CHROOT
-    cd -
-done
+for package in $PACKAGES; do (
+    cd "$package" || ( echo "No such directory: $package"; exit 1 )
+    rm -f ./*.pkg.tar.xz
+    makechrootpkg -cur "$CHROOT"
+) done
 
 s3cmd sync "$REMOTE_PATH/$REPO_NAME".{db,files}.tar.xz "$LOCAL_PATH/"
 ln -sf "$REPO_NAME.db.tar.xz" "$LOCAL_PATH/$REPO_NAME.db"
