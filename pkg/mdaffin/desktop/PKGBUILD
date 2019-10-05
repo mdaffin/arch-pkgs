@@ -17,7 +17,9 @@ package_mdaffin-desktop() {
     depends=(mdaffin-base)
 
     # I3 Desktop
-    depends+=(rofi i3-wm i3status i3blocks i3lock)
+    depends+=(i3-wm i3status i3blocks i3lock rofi)
+
+    depends+=(sway xorg-server-xwayland wl-clipboard)
 
     # Networking
     depends+=(wpa_supplicant wireless_tools iwd avahi nss-mdns openssh)
@@ -55,7 +57,7 @@ package_mdaffin-desktop() {
     # Fonts
     depends+=(
         noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-monofur
-        ttf-dejavu xorg-fonts-misc
+        ttf-dejavu xorg-fonts-misc ttf-font-awesome
     )
 
     optdepends=(krita okular chromium netdata nordvpn-bin)

@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Sway
+Comment=An i3-compatible Wayland compositor
+Exec=env MOZ_ENABLE_WAYLAND=1 sway
+Type=Application
