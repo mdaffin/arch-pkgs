@@ -1,0 +1,96 @@
+{
+  "layer": "bottom",
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-center": ["sway/window"],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "battery",
+    "backlight",
+    "pulseaudio",
+    "network",
+    "idle_inhibitor",
+    "tray",
+    "clock"
+  ],
+  "sway/workspaces": {
+    "format": "{name}",
+    "disable-scroll": true,
+    "all-outputs": false
+  },
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>",
+    "max-length": 20
+  },
+  "sway/window": {
+    "max-length": 80,
+    "tooltip": false
+  },
+  "tray": {
+    "spacing": 10,
+    "icon-size": 12
+  },
+  "clock": {
+    "format": " {:%a %d %b %H:%M}",
+    "tooltip": false
+  },
+  "cpu": {
+    "format": " {usage}%"
+  },
+  "memory": {
+    "format": " {}%"
+  },
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-alt": "{icon} {time}",
+    "format-alt-click": "click-right",
+    "format-charging": " {capacity}%",
+    "format-icons": ["", "", "", "", ""],
+    "interval": 30,
+    "states": {
+      "warning": 15,
+      "critical": 5
+    },
+    "tooltip": false
+  },
+  "network": {
+    "format-wifi": " {essid} ({signalStrength}%)",
+    "format-ethernet": "  {ifname}: {ipaddr}/{cidr} ",
+    "format-disconnected": "⚠ Disconnected ",
+    "on-click-right": "alacritty -e iwctl",
+    "tooltip": false
+  },
+  "pulseaudio": {
+    "format": " {icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-muted": "",
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+    "scroll-step": 1,
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "tooltip": false
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-alt-click": "click-right",
+    "format-icons": "",
+    "on-scroll-down": "brightnessctl set 1%-",
+    "on-scroll-up": "brightnessctl set +1%"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    },
+    "tooltip": false
+  }
+}

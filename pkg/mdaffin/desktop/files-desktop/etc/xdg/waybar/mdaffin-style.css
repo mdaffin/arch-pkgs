@@ -2,9 +2,10 @@
   border: none;
   border-radius: 0;
   font-family: Sans;
-  font-size: 12px;
+  font-size: 10px;
   box-shadow: none;
   text-shadow: none;
+  min-height: 0;
   transition-duration: 0s;
 }
 
@@ -14,7 +15,7 @@ window {
 }
 
 #workspaces {
-  margin: 0 0.1rem;
+  margin: 0;
 }
 
 #workspaces button {
@@ -35,6 +36,8 @@ window {
   color: rgba(238, 46, 36, 1);
 }
 
+#tray,
+#clock,
 #mode,
 #battery,
 #cpu,
@@ -43,13 +46,11 @@ window {
 #pulseaudio,
 #idle_inhibitor,
 #backlight {
-  margin: 0px 0.1rem 0px 0.1rem;
-  min-width: 25px;
+  margin: 0px 8px 0px 8px;
 }
 
 #clock {
-  margin: 0px 0.1rem 0px 0.1rem;
-  min-width: 140px;
+  margin: 0px 4px 0px 8px;
 }
 
 #battery.warning {
@@ -62,12 +63,4 @@ window {
 
 #battery.charging {
   color: rgba(217, 216, 216, 1);
-}
-
-#custom-storage.warning {
-  color: rgba(255, 210, 4, 1);
-}
-
-#custom-storage.critical {
-  color: rgba(238, 46, 36, 1);
 }
