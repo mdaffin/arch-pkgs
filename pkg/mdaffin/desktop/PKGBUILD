@@ -1,7 +1,7 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgbase=mdaffin-desktop
 pkgname=(mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13)
-pkgver=33
+pkgver=34
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -19,7 +19,10 @@ package_mdaffin-desktop() {
     # I3 Desktop
     depends+=(i3-wm i3status i3blocks i3lock rofi)
 
-    depends+=(sway xorg-server-xwayland wl-clipboard)
+    depends+=(
+        sway swaylock swayidle xorg-server-xwayland wl-clipboard brightnessctl
+        playerctl swayshot udiskie mako qt5-wayland
+    )
 
     # Networking
     depends+=(wpa_supplicant wireless_tools iwd avahi nss-mdns openssh)
