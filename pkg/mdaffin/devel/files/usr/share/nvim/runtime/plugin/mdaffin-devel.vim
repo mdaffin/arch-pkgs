@@ -33,6 +33,10 @@ let g:ale_fixers['json'] = ['prettier']
 let g:ale_fixers['yaml'] = ['prettier']
 let g:ale_fixers['less'] = ['prettier']
 
+" Tooling
+let g:ale_linters['tf'] = ['terraform']
+let g:ale_fixers['tf'] = ['terraform']
+
 " Do not lint or fix minified files.
 let g:ale_pattern_options = {
 \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
