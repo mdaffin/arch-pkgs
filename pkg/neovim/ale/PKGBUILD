@@ -3,7 +3,7 @@
 _pkgname=ale
 _pkgauthor=w0rp
 pkgname=neovim-ale-git
-pkgver=r134.c148643
+pkgver=r3359.5f84325c
 pkgrel=1
 pkgdesc="Asynchronous linting/fixing for Vim and Language Server Protocol (LSP) integration"
 arch=('any')

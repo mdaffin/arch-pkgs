@@ -3,7 +3,7 @@
 _pkgname=vim-go
 _pkgauthor=fatih
 pkgname=neovim-go-git
-pkgver=r134.c148643
+pkgver=r3294.5f2a4786
 pkgrel=1
 pkgdesc="Go development plugin for Vim"
 arch=('any')
