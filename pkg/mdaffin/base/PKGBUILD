@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname=mdaffin-base
-pkgver=32
+pkgver=34
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -43,7 +43,7 @@ depends+=(zsh grml-zsh-config)
 depends+=(exfat-utils dosfstools f2fs-tools)
 
 # Editor
-depends+=(neovim python-neovim neovim-ale-git neovim-fugitive)
+depends+=(neovim)
 
 rootdir=$PWD
 

@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname=mdaffin-devel
-pkgver=31
+pkgver=33
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -20,27 +20,16 @@ depends+=(
 )
 
 # General tools
-depends+=(git cmake jq musl stress aws-cli)
+depends+=(git cmake jq musl aws-cli ddrescue)
 
 # Arch Packaging
 depends+=(devtools aurutils s3cmd)
-
-# Virtualisation
-depends+=(virtualbox virtualbox-host-modules-arch vagrant virt-manager virt-viewer)
 
 # Docker
 depends+=(docker docker-compose dnsmasq minikube kubectl)
 
 # Automation tools
 depends+=(terraform)
-
-# Embedded development
-depends+=(qemu qemu-arch-extra picocom ddrescue)
-# Not sure if this is still needed I believe it was for embedded rust
-# arm-linux-gnueabihf-gcc
-
-# Neovim
-depends+=(neovim-ale-git neovim-go-git neovim-rust-git neovim-vue-git)
 
 # Rust
 depends+=(rustup)
@@ -56,9 +45,6 @@ depends+=(yarn npm nodejs prettier)
 
 # Text
 depends+=(vale)
-
-# Blog
-depends+=(wkhtmltopdf zola-bin)
 
 rootdir=$PWD
 

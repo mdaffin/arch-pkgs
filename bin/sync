@@ -19,7 +19,7 @@ ln -sf "$REPO_NAME.files.tar.xz" "$LOCAL_PATH/$REPO_NAME.files"
 ## remote so that we do not reupload them
 rm -f "$LOCAL_PATH/"*.pkg.tar.xz
 
-aur sync --database "$REPO_NAME" --root "$LOCAL_PATH" --chroot --directory "$CHROOT" -- "$@" || true
+aur sync --database "$REPO_NAME" --root "$LOCAL_PATH" --chroot --directory "$CHROOT" "$@" || true
 
 ## Sync local DB to remote ##
 s3cmd sync --follow-symlinks --acl-public \
