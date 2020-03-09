@@ -1,0 +1,5 @@
+prefix = "${HOME}/.cache/npm/packages"
+init-license = "MIT"
+init-version = "0.0.1"
+# https://blog.npmjs.org/post/141702881055/package-install-scripts-vulnerability
+ignore-scripts = true

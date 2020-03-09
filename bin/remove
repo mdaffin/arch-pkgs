@@ -19,5 +19,5 @@ ln -sf "$REPO_NAME.files.tar.xz" "$LOCAL_PATH/$REPO_NAME.files"
 repo-remove "$LOCAL_PATH/$REPO_NAME.db.tar.xz" "$@"
 s3cmd sync --follow-symlinks --acl-public "$LOCAL_PATH/$REPO_NAME".{db,files}{,.tar.xz} "$REMOTE_PATH/"
 for package in "$@"; do
-    s3cmd rm "$REMOTE_PATH/$package-*.pkg.tar.xz"
+    s3cmd rm "$REMOTE_PATH/$package-*.pkg.tar.zst"
 done

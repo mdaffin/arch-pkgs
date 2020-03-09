@@ -17,12 +17,12 @@ ln -sf "$REPO_NAME.files.tar.xz" "$LOCAL_PATH/$REPO_NAME.files"
 
 ## Clean up older packages that may or may not have been deleted from the
 ## remote so that we do not reupload them
-rm -f "$LOCAL_PATH/"*.pkg.tar.xz
+rm -f "$LOCAL_PATH/"*.pkg.tar.zst
 
 aur sync --database "$REPO_NAME" --root "$LOCAL_PATH" --chroot --directory "$CHROOT" "$@" || true
 
 ## Sync local DB to remote ##
 s3cmd sync --follow-symlinks --acl-public \
-    "$LOCAL_PATH/"*.pkg.tar.xz \
+    "$LOCAL_PATH/"*.pkg.tar.zst \
     "$LOCAL_PATH/$REPO_NAME".{db,files}{,.tar.xz} \
     "$REMOTE_PATH/"
