@@ -1,5 +1,5 @@
 # Node
-export PATH=$HOME/.npm-packages:$HOME/.yarn/bin:$PATH
+export PATH=$HOME/.local/share/npm/bin:$HOME/.yarn/bin:$PATH
 
 # Go
 export GOPATH=$HOME/projects/go
