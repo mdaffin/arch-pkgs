@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname=mdaffin-base
-pkgver=34
+pkgver=35
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -27,7 +27,7 @@ depends=(
 # Extra general packages
 depends+=(
     sudo ripgrep exa fd tmux wget fzf unzip zip dialog pacman-contrib bat ncdu
-    keybase efibootmgr pv nftables
+    keybase efibootmgr pv nftables linux-firmware intel-ucode
 )
 
 # Debugging tools
