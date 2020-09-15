@@ -1,7 +1,7 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgbase=mdaffin-desktop
 pkgname=(mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13)
-pkgver=39
+pkgver=40
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -23,9 +23,6 @@ package_mdaffin-desktop() {
         sway swaylock swayidle xorg-server-xwayland wl-clipboard brightnessctl
         playerctl swayshot udiskie j4-dmenu-desktop bemenu mako qt5-wayland
     )
-
-    # Networking
-    depends+=(wpa_supplicant wireless_tools iw iwd avahi nss-mdns openssh)
 
     # Login manager
     depends+=(sddm rng-tools archlinux-themes-sddm)

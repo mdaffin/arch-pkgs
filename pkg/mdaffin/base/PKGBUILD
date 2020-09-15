@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname=mdaffin-base
-pkgver=35
+pkgver=36
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -13,21 +13,13 @@ conflicts=(vim vi)
 replaces=(vim vi)
 install=mdaffin-base.install
 
-# Base group
-depends=(
-    bash bzip2 coreutils cryptsetup device-mapper dhcpcd diffutils e2fsprogs
-    file filesystem findutils gawk gcc-libs gettext glibc grep gzip inetutils
-    iproute2 iputils less licenses linux logrotate man-db man-pages mdadm
-    pacman pciutils perl procps-ng psmisc s-nail sed shadow sysfsutils
-    systemd-sysvcompat tar texinfo usbutils util-linux which
-)
-# Explicitly removed from the base group:
-#   jfsutils lvm2 nano netctl reiserfsprogs vi xfsprogs
+# Base packages
+depends=(base linux linux-firmware man-db man-pages texinfo intel-ucode)
 
 # Extra general packages
 depends+=(
-    sudo ripgrep exa fd tmux wget fzf unzip zip dialog pacman-contrib bat ncdu
-    keybase efibootmgr pv nftables linux-firmware intel-ucode
+    sudo ripgrep exa fd wget fzf unzip zip dialog pacman-contrib bat ncdu
+    keybase efibootmgr pv
 )
 
 # Debugging tools
@@ -40,10 +32,13 @@ depends+=(
 depends+=(zsh grml-zsh-config)
 
 # Filesystems
-depends+=(exfat-utils dosfstools f2fs-tools)
+depends+=(e2fsprogs exfat-utils dosfstools f2fs-tools)
 
 # Editor
 depends+=(neovim)
+
+# Networking
+depends+=(nftables iw iwd avahi nss-mdns openssh)
 
 rootdir=$PWD
 
