@@ -1,0 +1,19 @@
+#!/bin/bash
+set -ueo pipefail
+# shellcheck disable=SC2154
+trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
+IFS=$'\n\t'
+
+PACKAGE=${1:?}
+shift
+
+if [ -n "${1:-}" ]; then
+  gpg --keyserver hkp://keys.gnupg.net:80 --recv-keys "${@}"
+fi
+
+pkg_dir="$PWD/pkg/"
+
+cd "${PACKAGE}"
+sudo pacman --noconfirm --noprogressbar --needed -Syu
+makepkg --syncdeps --noconfirm --noprogressbar
+mv *.pkg.tar.* "${pkg_dir}"

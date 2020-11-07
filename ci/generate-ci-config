@@ -1,0 +1,51 @@
+#!/bin/sh
+
+generate_aur_stage() {
+cat <<EOF
+${1}:
+  stage: build
+  script: 
+    - ./ci/build-aur ${@}
+  artifacts:
+    paths:
+      - "pkg/*.pkg.tar.*"
+    expire_in: 1 day
+EOF
+}
+
+generate_local_stage() {
+cat <<EOF
+${1}:
+  stage: build
+  script: 
+    - ./ci/build-local ${@}
+  artifacts:
+    paths:
+      - "pkg/*.pkg.tar.*"
+    expire_in: 1 day
+  only:
+    changes:
+      - ${1}
+EOF
+}
+
+cat <<EOF
+stages:
+  - build
+  - publish
+
+image: "$CI_REGISTRY_IMAGE/builder"
+
+variables:
+  AWS_DEFAULT_REGION: eu-west-1
+  BUCKET: $BUCKET
+
+publish:
+  stage: publish
+  script:
+    - ./builder/publish
+EOF
+
+generate_aur_stage aurutils 3.0.3-2 6BC26A17B9B7018A
+generate_aur_stage gitlab-cli 0.1.12-2
+generate_local_stage pkg/mdaffin

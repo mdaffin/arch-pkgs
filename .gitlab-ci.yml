@@ -1,0 +1,43 @@
+image: docker
+
+stages:
+  - build
+  - test
+    
+generate-config:
+  image: alpine
+  stage: build
+  script: ./ci/generate-ci-config > generated-config.yml
+  artifacts:
+    paths:
+      - generated-config.yml
+  variables:
+    BUCKET: s3://repository-b1b999c
+  only:
+    refs:
+      - master
+
+build:builder:
+  stage: build
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+  script:
+    - docker build -t "$CI_REGISTRY_IMAGE/builder" ci/builder
+    - docker push "$CI_REGISTRY_IMAGE/builder"
+  only:
+    refs:
+      - master
+    changes:
+      - "ci/builder/**/*"
+
+child-pipeline:
+  stage: test
+  trigger:
+    include:
+      - artifact: generated-config.yml
+        job: generate-config
+  only:
+    refs:
+      - master
