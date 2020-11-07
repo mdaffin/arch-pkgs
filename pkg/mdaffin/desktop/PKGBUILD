@@ -1,7 +1,7 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgbase=mdaffin-desktop
 pkgname=(mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13)
-pkgver=42
+pkgver=43
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
