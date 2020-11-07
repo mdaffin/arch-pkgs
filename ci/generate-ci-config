@@ -23,9 +23,6 @@ ${1}:
     paths:
       - "pkg/*.pkg.tar.*"
     expire_in: 1 day
-  only:
-    changes:
-      - ${1}
 EOF
 }
 
