@@ -43,9 +43,12 @@ variables:
 publish:
   stage: publish
   script:
-    - ./builder/publish
+    - ./ci/publish
 EOF
 
 generate_aur_stage aurutils 3.0.3-2 6BC26A17B9B7018A
 generate_aur_stage gitlab-cli 0.1.12-2
-generate_local_stage pkg/mdaffin
+generate_local_stage pkg/mdaffin/base
+generate_local_stage pkg/mdaffin/desktop
+generate_local_stage pkg/mdaffin/devel
+generate_local_stage pkg/mdaffin/gaming
