@@ -1,0 +1,27 @@
+#!/bin/bash
+set -ueo pipefail
+# shellcheck disable=SC2154
+trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
+IFS=$'\n\t'
+
+PACKAGE=${1:?}
+VERSION=${2:?}
+shift 2
+
+aur_version=$(curl -SsfL "https://aur.archlinux.org/rpc/?v=5&type=info&arg[]=${PACKAGE}" | jq -r ".results[0].Version")
+if [[ "$VERSION" == "$aur_version" ]]; then
+  echo "$PACKAGE up to date at $aur_version, nothing to do"
+  exit
+fi
+
+if [ -n "${1:-}" ]; then
+  gpg --keyserver hkp://keys.gnupg.net:80 --recv-keys "${@}"
+fi
+
+mkdir -p pkg
+curl -SsfL -o "pkg/${PACKAGE}.tar.gz" "https://aur.archlinux.org/cgit/aur.git/snapshot/${PACKAGE}.tar.gz"
+tar -C pkg -xf "pkg/${PACKAGE}.tar.gz"
+cd "pkg/${PACKAGE}"
+sudo pacman --noconfirm --noprogressbar --needed -Syu
+makepkg --syncdeps --noconfirm --noprogressbar
+mv *.pkg.tar.* ..

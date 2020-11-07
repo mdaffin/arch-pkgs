@@ -1,0 +1,27 @@
+#!/bin/bash
+set -ueo pipefail
+# shellcheck disable=SC2154
+trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
+IFS=$'\n\t'
+
+set -x
+
+REMOTE_PATH=${BUCKET:?}/repo/x86_64
+REPO_NAME=mdaffin
+
+if ! compgen -G "pkg/*.pkg.tar.*" &>/dev/null; then
+    echo "No package files found in pkg, nothing to do"
+    exit
+fi
+
+aws s3 cp "${REMOTE_PATH}/${REPO_NAME}.db.tar.xz" pkg/ || true
+aws s3 cp "${REMOTE_PATH}/${REPO_NAME}.files.tar.xz" pkg/ || true
+
+repo-add "pkg/${REPO_NAME}.db.tar.xz" pkg/*.pkg.tar.*
+rm -f pkg/*.old
+
+aws s3 cp \
+    --follow-symlinks \
+    --acl=public-read-write \
+    --recursive \
+    "pkg/" "$REMOTE_PATH/"
