@@ -15,6 +15,7 @@ generate-config:
     BUCKET: s3://repository-b1b999c
   only:
     refs:
+      - ci-local-packages
       - master
 
 build:builder:
@@ -40,4 +41,5 @@ child-pipeline:
         job: generate-config
   only:
     refs:
+      - ci-local-packages
       - master
