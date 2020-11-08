@@ -14,7 +14,9 @@ fi
 pkg_dir="$PWD/pkg/"
 
 cd "${PACKAGE}"
-sudo pacman -U "$pkg_dir"/*
+if ! compgen -G "$pkg_dir"/* &>/dev/null; then
+  sudo pacman -U "$pkg_dir"/*
+fi
 sudo pacman --noconfirm --noprogressbar --needed -Syu
 makepkg --syncdeps --noconfirm --noprogressbar
 mv *.pkg.tar.* "${pkg_dir}"
