@@ -60,3 +60,4 @@ EOF
 
 generate_aur_stage aurutils 3.0.3-2 6BC26A17B9B7018A
 generate_aur_stage gitlab-cli 0.1.12-2
+generate_aur_stage vale 2.4.0-2
