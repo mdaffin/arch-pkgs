@@ -13,12 +13,11 @@ fi
 
 pkg_dir="$PWD/pkg/"
 
-sudo pacman -Syu
+sudo pacman --noconfirm --noprogressbar --needed -Syu
 if ! compgen -G "$pkg_dir"/* &>/dev/null; then
   sudo pacman -U "$pkg_dir"/*
 fi
 
 cd "${PACKAGE}"
-sudo pacman --noconfirm --noprogressbar --needed -Syu
 makepkg --syncdeps --noconfirm --noprogressbar
 mv *.pkg.tar.* "${pkg_dir}"
