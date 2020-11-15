@@ -13,7 +13,7 @@ fi
 
 pkg_dir="$PWD/pkg/"
 
-cat <<EOF >>/etc/pacman.conf
+cat <<EOF | sudo tee -a /etc/pacman.conf >/dev/null
 [mdaffin]
 SigLevel = Optional TrustAll
 Server = https://s3.eu-west-2.amazonaws.com/mdaffin-arch/repo/x86_64
