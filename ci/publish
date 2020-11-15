@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ueo pipefail
+set -uo pipefail
 # shellcheck disable=SC2154
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 IFS=$'\n\t'
