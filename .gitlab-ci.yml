@@ -15,6 +15,7 @@ generate-config:
     BUCKET: s3://repository-b1b999c
   only:
     refs:
+      - pipelines2
       - master
 
 build:builder:
@@ -28,6 +29,7 @@ build:builder:
     - docker push "$CI_REGISTRY_IMAGE/builder"
   only:
     refs:
+      - pipelines2
       - master
     changes:
       - "ci/builder/**/*"
@@ -40,4 +42,5 @@ child-pipeline:
         job: generate-config
   only:
     refs:
+      - pipelines2
       - master
