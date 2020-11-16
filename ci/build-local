@@ -13,6 +13,14 @@ fi
 
 pkg_dir="$PWD/pkg/"
 
+cat <<EOF | sudo tee -a /etc/pacman.conf >/dev/null
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+[mdaffin]
+SigLevel = Optional TrustAll
+Server = https://s3.eu-west-2.amazonaws.com/mdaffin-arch/repo/x86_64
+EOF
+
 cd "${PACKAGE}"
 sudo pacman --noconfirm --noprogressbar --needed -Syu
 makepkg --syncdeps --noconfirm --noprogressbar

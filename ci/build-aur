@@ -18,6 +18,14 @@ if [ -n "${1:-}" ]; then
   gpg --keyserver hkp://keys.gnupg.net:80 --recv-keys "${@}"
 fi
 
+cat <<EOF | sudo tee -a /etc/pacman.conf >/dev/null
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+[mdaffin]
+SigLevel = Optional TrustAll
+Server = https://s3.eu-west-2.amazonaws.com/mdaffin-arch/repo/x86_64
+EOF
+
 mkdir -p pkg
 curl -SsfL -o "pkg/${PACKAGE}.tar.gz" "https://aur.archlinux.org/cgit/aur.git/snapshot/${PACKAGE}.tar.gz"
 tar -C pkg -xf "pkg/${PACKAGE}.tar.gz"
