@@ -1,6 +1,6 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgname=mdaffin-base
-pkgver=36
+pkgver=37
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
