@@ -2,7 +2,7 @@
 pkgbase=mdaffin
 pkgname=(mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13)
 pkgver=45
-pkgrel=1
+pkgrel=2
 pkgdesc="System config for mdaffin systems"
 arch=(any)
 url="https://github.com/mdaffin/arch-repo"
@@ -92,7 +92,7 @@ package_mdaffin-desktop() {
 
     # Applications
     depends+=(
-        alacritty firefox gopass discord slack-desktop dignal-desktop nemo
+        alacritty firefox gopass discord slack-desktop signal-desktop nemo
         nemo-fileroller nemo-preview
     )
 
