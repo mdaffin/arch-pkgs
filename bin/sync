@@ -11,7 +11,8 @@ CHROOT="$HOME/.local/share/arch-root"
 mkdir -p "$LOCAL_PATH"
 
 ## Sync remote DB to local ##
-s3cmd sync "$REMOTE_PATH/$REPO_NAME".{db,files}.tar.xz "$LOCAL_PATH/"
+aws s3 cp "$REMOTE_PATH/$REPO_NAME".db.tar.xz "$LOCAL_PATH/"
+aws s3 cp "$REMOTE_PATH/$REPO_NAME".files.tar.xz "$LOCAL_PATH/"
 ln -sf "$REPO_NAME.db.tar.xz" "$LOCAL_PATH/$REPO_NAME.db"
 ln -sf "$REPO_NAME.files.tar.xz" "$LOCAL_PATH/$REPO_NAME.files"
 
@@ -22,7 +23,6 @@ rm -f "$LOCAL_PATH/"*.pkg.tar.zst
 aur sync --database "$REPO_NAME" --root "$LOCAL_PATH" --chroot --directory "$CHROOT" "$@" || true
 
 ## Sync local DB to remote ##
-s3cmd sync --follow-symlinks --acl-public \
-    "$LOCAL_PATH/"*.pkg.tar.zst \
-    "$LOCAL_PATH/$REPO_NAME".{db,files}{,.tar.xz} \
+aws s3 sync --follow-symlinks --acl=public-read \
+    "$LOCAL_PATH/" \
     "$REMOTE_PATH/"
