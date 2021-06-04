@@ -1,8 +1,8 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgbase=mdaffin
-pkgname=(mdaffin-desktop mdaffin-laptop mdaffin-dell-xps-13)
-pkgver=45
-pkgrel=2
+pkgname=(mdaffin-base mdaffin-desktop mdaffin-neovim mdaffin-laptop mdaffin-dell-xps-13)
+pkgver=46
+pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
 url="https://github.com/mdaffin/arch-repo"
@@ -30,7 +30,7 @@ package_mdaffin-base() {
     # Extra general packages
     depends+=(
         ripgrep exa fd wget fzf unzip zip dialog pacman-contrib bat ncdu
-        keybase efibootmgr pv neovim zsh grml-zsh-config zsh-completions
+        keybase efibootmgr pv zsh grml-zsh-config zsh-completions watchexec
     )
 
     # Debugging tools
@@ -52,7 +52,7 @@ package_mdaffin-base() {
     depends+=(devtools aurutils aws-cli-v2-bin)
 
     # Docker
-    depends+=(docker docker-compose dnsmasq rancher-k3d-bin kubectl k9s)
+    depends+=(docker docker-compose dnsmasq rancher-k3d-bin kubectl k9s kind)
 
     # Automation tools
     depends+=(terraform)
@@ -71,6 +71,40 @@ package_mdaffin-base() {
 
     cp -a "$rootdir/files-base/"* "$pkgdir"
     chmod -R 0750 "$pkgdir/etc/sudoers.d"
+}
+
+package_mdaffin-neovim() {
+    depends=(mdaffin-base neovim-git python-msgpack python-pynvim)
+    depends+=(
+        bash-language-server
+        dockerfile-language-server-bin
+        gopls
+        nodejs-svelte-language-server
+        python-language-server
+        rust-analyzer
+        terraform-ls
+        typescript-language-server-bin
+        vim-language-server
+        vscode-css-languageserver-bin
+        vscode-html-languageserver-bin
+        vscode-json-languageserver-bin
+        yaml-language-server
+    )
+
+    export DESTDIR=$pkgdir
+    "$rootdir/add-nvim-plugin" opt neovim/nvim-lspconfig
+    "$rootdir/add-nvim-plugin" start liuchengxu/vim-which-key
+    "$rootdir/add-nvim-plugin" start ap/vim-buftabline
+    "$rootdir/add-nvim-plugin" start ekalinin/Dockerfile.vim
+    "$rootdir/add-nvim-plugin" start sheerun/vim-polyglot
+    "$rootdir/add-nvim-plugin" opt dracula/vim dracula
+    "$rootdir/add-nvim-plugin" opt nvim-lua/lsp_extensions.nvim
+    "$rootdir/add-nvim-plugin" opt nvim-lua/completion-nvim
+    "$rootdir/add-nvim-plugin" opt nvim-lua/lsp-status.nvim
+    "$rootdir/add-nvim-plugin" opt junegunn/fzf.vim
+    "$rootdir/add-nvim-plugin" start udalov/kotlin-vim
+
+    cp -a "$rootdir/files-neovim/"* "$pkgdir"
 }
 
 package_mdaffin-desktop() {
@@ -109,7 +143,7 @@ package_mdaffin-desktop() {
     )
 
     # Xorg packages and utilities
-    depends+=(xorg-xkill xorg-xev xorg-xhost xorg-xrandr)
+    depends+=(xorg-xkill xorg-xev xorg-xhost xorg-xrandr xsel)
 
     # Fonts
     depends+=(

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -uo pipefail
+# shellcheck disable=SC2154
+trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
+IFS=$'\n\t'
+
+plugin_type=${1:?missing plugin type [start|opt]}
+plugin=${2:?missing plugin}
+
+plugin_author=${plugin%/*}
+plugin_name=${plugin#*/}
+plugin_rename=${3:-${plugin_name}}
+
+plugin_path="$DESTDIR/usr/share/nvim/runtime/pack/plugin/$plugin_type/"
+mkdir -p "$plugin_path"
+
+curl -fSsL https://github.com/${plugin}/archive/master.tar.gz | tar -xz -C "$plugin_path"
+mv "$plugin_path/$plugin_name-master" "$plugin_path/$plugin_rename"
+rm -rf "$plugin_path/$plugin_rename"/{*test*,*.md,.git}
