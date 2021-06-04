@@ -2,7 +2,7 @@
 pkgbase=mdaffin
 pkgname=(mdaffin-base mdaffin-desktop mdaffin-neovim mdaffin-laptop mdaffin-dell-xps-13)
 pkgver=46
-pkgrel=1
+pkgrel=2
 pkgdesc="System config for mdaffin systems"
 arch=(any)
 url="https://github.com/mdaffin/arch-repo"
@@ -12,9 +12,9 @@ groups=(mdaffin)
 rootdir=$PWD
 
 package_mdaffin-base() {
-    provides=(vim vi mdaffin-devel)
-    conflicts=(vim vi mdaffin-devel)
-    replaces=(vim vi mdaffin-devel)
+    provides=(mdaffin-devel)
+    conflicts=(mdaffin-devel)
+    replaces=(mdaffin-devel)
     install=mdaffin-base.install
 
     # Base packages
@@ -46,7 +46,7 @@ package_mdaffin-base() {
     depends+=(nftables iw iwd avahi nss-mdns openssh)
 
     # General tools
-    depends+=(git cmake jq musl aws-cli ddrescue)
+    depends+=(git cmake jq musl ddrescue)
 
     # Arch Packaging
     depends+=(devtools aurutils aws-cli-v2-bin)
@@ -74,6 +74,10 @@ package_mdaffin-base() {
 }
 
 package_mdaffin-neovim() {
+    provides=(vim vi)
+    conflicts=(vim vi)
+    replaces=(vim vi)
+
     depends=(mdaffin-base neovim-git python-msgpack python-pynvim)
     depends+=(
         bash-language-server
