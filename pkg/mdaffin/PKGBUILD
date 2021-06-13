@@ -1,8 +1,8 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgbase=mdaffin
 pkgname=(mdaffin-base mdaffin-desktop mdaffin-neovim mdaffin-laptop mdaffin-dell-xps-13)
-pkgver=46
-pkgrel=2
+pkgver=47
+pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
 url="https://github.com/mdaffin/arch-repo"
