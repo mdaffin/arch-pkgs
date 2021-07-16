@@ -1,7 +1,7 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgbase=mdaffin
 pkgname=(mdaffin-base mdaffin-desktop mdaffin-neovim mdaffin-laptop mdaffin-dell-xps-13)
-pkgver=47
+pkgver=48
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -78,7 +78,7 @@ package_mdaffin-neovim() {
     conflicts=(vim vi)
     replaces=(vim vi)
 
-    depends=(mdaffin-base neovim-git python-msgpack python-pynvim)
+    depends=(mdaffin-base neovim python-msgpack python-pynvim)
     depends+=(
         bash-language-server
         dockerfile-language-server-bin
