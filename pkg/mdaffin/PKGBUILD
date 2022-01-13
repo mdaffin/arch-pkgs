@@ -1,7 +1,7 @@
 # Maintainer: Michael Daffin <michael@daffin.io>
 pkgbase=mdaffin
 pkgname=(mdaffin-base mdaffin-desktop mdaffin-neovim mdaffin-laptop mdaffin-dell-xps-13)
-pkgver=48
+pkgver=49
 pkgrel=1
 pkgdesc="System config for mdaffin systems"
 arch=(any)
@@ -136,8 +136,8 @@ package_mdaffin-desktop() {
 
     # Utility
     depends+=(
-        redshift python-gobject bluez bluez-utils pulseaudio pulseaudio-alsa
-        pulseaudio-bluetooth pavucontrol paprefs scrot arandr
+        redshift python-gobject bluez bluez-utils pipewire pipewire-alsa
+        pipewire-pulse wireplumber helvum pavucontrol paprefs scrot arandr
     )
 
     # Drivers and utilities
