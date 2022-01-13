@@ -25,10 +25,13 @@ exec --no-startup-id /usr/bin/libinput-gestures-setup start
 # set the background colour
 exec --no-startup-id xsetroot -solid "#222222"
 
+# bluetooth applet
+exec --no-startup-id blueberry-tray
+
 # General applications
 exec --no-startup-id redshift-gtk
-exec --no-startup-id steam
-exec --no-startup-id firefox -P default
+#exec --no-startup-id steam
+#exec --no-startup-id firefox -P default
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
